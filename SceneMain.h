@@ -1,7 +1,8 @@
 #pragma once
 #include "Map.h"
 #include "Key.h"
-#include "player.h"
+#include "Player.h"
+#include "Door.h"
 
 class SceneMain {
 public:
@@ -24,11 +25,15 @@ private:
 	int m_hKey;
 	//プレイヤーのグラフィックハンドル
 	int m_hPlayerGraphic[Player::kGraphicDivNum];
+	//ドアのグラフィックハンドル
+	int m_hDoor;
 
 	//マップ
 	Map m_map;
 	//鍵
 	Key m_key;
+	//ドア
+	Door m_door;
 	//プレイヤー
 	Player m_player;
 };

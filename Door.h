@@ -1,27 +1,26 @@
 #pragma once
 
-#include "Vec2.h"
+#include"Vec2.h"
 #include "Player.h"
 
-class Key {
+class Door {
 public:
-	Key();
-	virtual ~Key();
+	Door();
+	virtual ~Door();
 
 	//グラフィックデータの設定
 	void setHandle(int handle) { m_handle = handle; }
-	//マップの初期化
-	void init();
-	
-	//描画
+
+	//
 	void draw();
 
-	// 鍵の取得
+	//ドアの死亡判定用
+	void setPadlockDead(bool isPadlookDead) { m_isPadlockDead = isPadlookDead; }
+
 	bool isCol(Player& player);
 
-	//鍵の死亡判定用
 	void setDead(bool isDead) { m_isDead = isDead; }
-	
+
 	//データの取得
 	Vec2 getPos()const { return m_pos; }					//左上座標
 	Vec2 getBottomRight()const { return m_pos + m_size; }	//右下座標
@@ -29,10 +28,12 @@ public:
 private:
 	//ハンドル
 	int m_handle;
-	//生死
-	bool m_isDead;
-	//座標
+
+	int m_isDead;
+
+	int m_isPadlockDead;
+
 	Vec2 m_pos;
-	//サイズ
+
 	Vec2 m_size;
 };
