@@ -49,8 +49,14 @@ void SceneMain::end() {
 }
 
 // 毎フレームの処理
-void SceneMain::update() {
+bool SceneMain::update() {
 	m_player.update();
+	
+	if (m_key.isCol(m_player)) {
+		m_key.setDead(true);
+	}
+
+	return false;
 }
 
 // 毎フレームの描画

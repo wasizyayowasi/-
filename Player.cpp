@@ -87,4 +87,6 @@ void Player::update()
 void Player::draw()
 {
 	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
+	//デバッグ用
+	//DrawBox(getPos().x, getPos().y, getPos().x + 32, getPos().y + 32, GetColor(0, 0, 0), false);
 }

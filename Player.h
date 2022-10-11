@@ -24,6 +24,9 @@ public:
 	// プレイヤーの初期化
 	void init();
 
+	//データの取得
+	Vec2 getPos()const { return m_pos; }				
+
 	// 処理
 	void update();
 	// 描画
@@ -34,6 +37,8 @@ private:
 
 	// 表示位置
 	Vec2 m_pos;
+	//サイズ
+	Vec2 m_size;
 	// 移動
 	Vec2 m_vec;
 
