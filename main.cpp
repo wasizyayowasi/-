@@ -35,8 +35,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		SetBackgroundColor(255, 255, 255);
 
-		//scene.draw();
+		scene.update();
 
+		scene.draw();
 
 		//— ‰æ–Ê‚ğ•\‰æ–Ê‚ÉØ‚è‘Ö‚¦‚é
 		ScreenFlip();

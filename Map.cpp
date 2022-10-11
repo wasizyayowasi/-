@@ -1,6 +1,11 @@
 #include "DxLib.h"
 #include"Map.h"
 
+namespace {
+	constexpr int mapX = 100;
+	constexpr int mapY = 25;
+}
+
 Map::Map() {
 	m_handle = -1;
 
@@ -18,5 +23,5 @@ void Map::init() {
 
 //•`‰æ
 void Map::draw() {
-	DrawGraph(100, 25, m_handle, true);
+	DrawGraph(mapX, mapY, m_handle, true);
 }

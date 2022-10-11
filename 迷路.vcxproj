@@ -151,8 +151,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Key.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RoomBase.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="StartRoom.cpp" />
@@ -160,7 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h" />
+    <ClInclude Include="Key.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="RoomBase.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="StartRoom.h" />
