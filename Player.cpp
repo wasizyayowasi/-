@@ -89,4 +89,35 @@ void Player::draw()
 	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
 	//デバッグ用
 	//DrawBox(getPos().x, getPos().y, getPos().x + 32, getPos().y + 32, GetColor(0, 0, 0), false);
+
+	//外壁確認
+	DrawBox(100, 25, 115, 571, GetColor(255, 0, 0), false);		//左
+	DrawBox(100, 25, 360, 40, GetColor(255, 0, 0), false);		//左上
+	DrawBox(440, 25, 700, 40, GetColor(255, 0, 0), false);		//右上
+	DrawBox(685, 25, 700, 571, GetColor(255, 0, 0), false);		//右
+	DrawBox(435, 556, 700, 571, GetColor(255, 0, 0), false);	//右下
+	DrawBox(100, 556, 365, 571, GetColor(255, 0, 0), false);	//左下
+	//緑内壁
+	DrawBox(270, 25, 280, 265, GetColor(0,255, 0), false);		//左
+	DrawBox(185, 255, 365, 265, GetColor(0, 255, 0), false);	//真ん中
+	DrawBox(185, 105, 195, 265, GetColor(0, 255, 0), false);	//真ん中下
+	DrawBox(352, 255, 363, 340, GetColor(0, 255, 0), false);	//右下縦
+	DrawBox(352, 330, 530, 340, GetColor(0, 255, 0), false);	//右下横
+	//水色内壁   右上から①
+	DrawBox(435, 103, 700, 113, GetColor(0,255, 255), false);	//①
+	DrawBox(352, 103, 362, 190, GetColor(0, 255, 255), false);  //②
+	DrawBox(352, 180, 615, 190, GetColor(0, 255, 255), false);	//③
+	DrawBox(435, 180, 445, 265, GetColor(0, 255, 255), false);	//④
+	DrawBox(435, 255, 530, 265, GetColor(0, 255, 255), false);	//⑤
+	DrawBox(603, 180, 613, 415, GetColor(0, 255, 255), false);	//⑥
+	DrawBox(270, 405, 613, 415, GetColor(0, 255, 255), false);	//⑦
+	DrawBox(270, 330, 280, 415, GetColor(0, 255, 255), false);	//⑧
+	DrawBox(185, 330, 280, 340, GetColor(0, 255, 255), false);	//⑨
+	DrawBox(185, 330, 195, 490, GetColor(0, 255, 255), false);	//⑩
+	//青内壁　　　　右から①
+	DrawBox(603, 480, 613, 571, GetColor(0,0,255), false);
+	DrawBox(520, 405, 530, 490, GetColor(0,0,255), false);	
+	DrawBox(437, 480, 447, 571, GetColor(0, 0, 255), false);
+	DrawBox(352, 405, 362, 571, GetColor(0, 0,255), false);
+	DrawBox(270, 480, 280, 571, GetColor(0, 0, 255), false);
 }

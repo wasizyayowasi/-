@@ -22,7 +22,7 @@ Door::~Door() {
 void Door::draw() {
 	if (m_isDead) return;
 	DrawBox(getPos().x + m_doorX, getPos().y + m_doorY, getPos().x + m_doorX + kSizeX, getPos().y + m_doorY + kSizeY, GetColor(0, 0, 0), false);
-	DrawGraph(m_doorX, m_doorY, m_handle, true);
+	//DrawGraph(m_doorX, m_doorY, m_handle, true);
 }
 
 bool Door::isCol(Player& player) {
