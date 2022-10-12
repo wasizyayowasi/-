@@ -27,10 +27,6 @@ void Door::draw() {
 
 bool Door::isCol(Player& player) {
 
-	if (m_isPadlockDead) {
-		return true;
-	}
-	else {
 		float doorLeft = getPos().x + m_doorX;
 		float doorRight = getPos().x + m_doorX + kSizeX;
 		float doorTop = getPos().y + m_doorY;
@@ -41,9 +37,12 @@ bool Door::isCol(Player& player) {
 		float playerTop = player.getPos().y;
 		float playerBottom = player.getPos().y + 32;
 
-		if (playerRight < doorLeft)	return false;
-		if (playerLeft > doorRight)	return false;
-		if (playerBottom < doorTop)	return false;
-		if (playerTop > doorBottom)	return false;
-	}
+		if (playerTop < doorBottom) {
+			if (m_isPadlockDead) {
+				return true;
+			}
+		}
+
+		return false;
+
 }
