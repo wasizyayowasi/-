@@ -48,6 +48,9 @@ void Player::update()
 	{
 		//è„Å@73Å`96
 		m_pos.y -= 2;
+		if (m_pos.y < 0) {
+			m_pos.y = 0;
+		}
 		m_animeDirections = 3;
 		isKey = true;
 	}
@@ -55,6 +58,9 @@ void Player::update()
 	{
 		//â∫Å@1Å`24
 		m_pos.y += 2;
+		if (m_pos.y > Game::kScreenHeight - 32) {
+			m_pos.y = Game::kScreenHeight - 32;
+		}
 		m_animeDirections = 0;
 		isKey = true;
 	}
@@ -62,6 +68,9 @@ void Player::update()
 	{
 		//ç∂Å@25Å`48
 		m_pos.x -= 2;
+		if (m_pos.x < 0) {
+			m_pos.x = 0;
+		}
 		m_animeDirections = 1;
 		isKey = true;
 	}
@@ -69,6 +78,9 @@ void Player::update()
 	{
 		//âEÅ@49Å`72
 		m_pos.x += 2;
+		if (m_pos.x > Game::kScreenWidth - 32) {
+			m_pos.x = Game::kScreenWidth - 32;
+		}
 		m_animeDirections = 2;
 		isKey = true;
 	}

@@ -56,7 +56,7 @@ void SceneMain::end() {
 // –ˆƒtƒŒ[ƒ€‚Ìˆ—
 bool SceneMain::update() {
 	m_player.update();
-	
+
 	if (m_key.isCol(m_player)) {
 		m_key.setDead(true);
 		m_door.setPadlockDead(true);

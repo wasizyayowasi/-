@@ -158,6 +158,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RoomBase.cpp" />
     <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="StartRoom.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
@@ -169,6 +170,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="RoomBase.h" />
     <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="StartRoom.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
