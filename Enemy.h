@@ -23,8 +23,6 @@ public:
 	// グラフィックデータ設定
 	void setHandle(int index, int handle) { m_handle[index] = handle; }
 
-	void setGraphic(int handle);
-
 	// サイズの取得
 	Vec2 getGraphSize() const { return m_graphSize; }
 	Vec2 getColSize() const { return m_colSize; }
