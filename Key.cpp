@@ -2,8 +2,6 @@
 #include"Key.h"
 
 namespace {
-	constexpr int m_keyX = 220;
-	constexpr int m_keyY = 200;
 	constexpr int m_keyAngle = 45;
 
 	//鍵のサイズ
@@ -12,6 +10,8 @@ namespace {
 }
 
 Key::Key() {
+	m_keyX = 220;
+	m_keyY = 200;
 	m_handle = -1;
 	m_isDead = false;
 }
@@ -28,7 +28,10 @@ void Key::init() {
 
 //描画
 void Key::draw() {
-	if (m_isDead) return;
+	if (m_isDead) {
+		m_keyX = 0;
+		m_keyY = 20;
+	}
 	
 	DrawGraph(m_keyX, m_keyY, m_handle, true);
 	//デバッグ用

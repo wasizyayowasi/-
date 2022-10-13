@@ -29,6 +29,10 @@ public:
 
 	// ˆ—
 	void update();
+
+	//ƒLƒƒƒ‰‚ğŒã‘Ş‚³‚¹‚é
+	void downGrade();
+
 	// •`‰æ
 	void draw();
 

@@ -3,6 +3,7 @@
 #include "Key.h"
 #include "Player.h"
 #include "Door.h"
+#include "GreenWall.h"
 
 class SceneMain {
 public:
@@ -36,4 +37,6 @@ private:
 	Door m_door;
 	//ƒvƒŒƒCƒ„[
 	Player m_player;
+	//—Î‚Ì•Ç
+	GreenWall m_greenWall;
 };

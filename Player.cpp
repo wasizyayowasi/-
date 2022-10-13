@@ -96,8 +96,59 @@ void Player::update()
 	m_animeNo = m_animeDirections * kGraphicDivX + tempAnimeNo;
 }
 
+void Player::downGrade() {
+
+	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+	bool isKey = false;
+	if (padState & PAD_INPUT_UP)
+	{
+		//上　73～96
+		m_pos.y += 8;
+		if (m_pos.y < 0) {
+			m_pos.y = 0;
+		}
+		m_animeDirections = 3;
+		isKey = true;
+	}
+	if (padState & PAD_INPUT_DOWN)
+	{
+		//下　1～24
+		m_pos.y -= 8;
+		if (m_pos.y > Game::kScreenHeight - 32) {
+			m_pos.y = Game::kScreenHeight - 32;
+		}
+		m_animeDirections = 0;
+		isKey = true;
+	}
+	if (padState & PAD_INPUT_LEFT)
+	{
+		//左　25～48
+		m_pos.x += 8;
+		if (m_pos.x < 0) {
+			m_pos.x = 0;
+		}
+		m_animeDirections = 1;
+		isKey = true;
+	}
+	if (padState & PAD_INPUT_RIGHT)
+	{
+		//右　49～72
+		m_pos.x -= 8;
+		if (m_pos.x > Game::kScreenWidth - 32) {
+			m_pos.x = Game::kScreenWidth - 32;
+		}
+		m_animeDirections = 2;
+		isKey = true;
+	}
+
+	//キャラクターのアニメーション
+	if (isKey) m_animeFrame++;
+
+}
+
 void Player::draw()
 {
+	DrawString(0, 0, "持ち物", GetColor(0, 0, 0));
 	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
 	//デバッグ用
 	//DrawBox(getPos().x, getPos().y, getPos().x + 32, getPos().y + 32, GetColor(0, 0, 0), false);

@@ -55,7 +55,14 @@ void SceneMain::end() {
 
 // –ˆƒtƒŒ[ƒ€‚Ìˆ—
 bool SceneMain::update() {
-	m_player.update();
+	if (!m_greenWall.update(m_player)) {
+		m_player.update();
+	}
+	else {
+		m_player.downGrade();
+	}
+
+	
 
 	if (m_key.isCol(m_player)) {
 		m_key.setDead(true);

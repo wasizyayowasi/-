@@ -27,6 +27,10 @@ public:
 	Vec2 getBottomRight()const { return m_pos + m_size; }	//右下座標
 
 private:
+
+	//鍵の座標
+	int m_keyX;
+	int m_keyY;
 	//ハンドル
 	int m_handle;
 	//生死
