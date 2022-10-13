@@ -8,6 +8,7 @@ namespace {
 
 	//グラフィックファイル名
 	const char* const kPlayerGraphicFilename = "data/char.png";
+	const char* const kEnemyGraphicFilename = "data/enemy.png";
 
 }
 
@@ -15,8 +16,12 @@ SceneMain::SceneMain() {
 	m_hMap = -1;
 	m_hKey = -1;
 	m_hDoor = -1;
-	for (auto& handle : m_hPlayerGraphic) {
-		handle = -1;
+
+	for (auto& playerHandle : m_hPlayerGraphic) {
+		playerHandle = -1;
+	}
+	for (auto& EnemyHandle : m_hEnemyGraphic) {
+		EnemyHandle = -1;
 	}
 }
 
@@ -35,12 +40,18 @@ void SceneMain::init() {
 	m_door.setHandle(m_hDoor);
 
 	LoadDivGraph(kPlayerGraphicFilename, Player::kGraphicDivNum, Player::kGraphicDivX, Player::kGraphicDivY, Player::kGraphicSizeX, Player::kGraphicSizeY, m_hPlayerGraphic);
-	
+	LoadDivGraph(kEnemyGraphicFilename, Enemy::kGraphicDivNum, Enemy::kGraphicDivX, Enemy::kGraphicDivY, Enemy::kGraphicSizeX, Enemy::kGraphicSizeY, m_hEnemyGraphic);
+
 	for (int i = 0; i < Player::kGraphicDivNum; i++) {
 		m_player.setHandle(i, m_hPlayerGraphic[i]);
 	}
 
+	for (int i = 0; i < Enemy::kGraphicDivNum; i++) {
+		m_enemy.setHandle(i, m_hEnemyGraphic[i]);
+	}
+
 	m_player.init();
+	m_enemy.init();
 }
 
 // 終了処理
@@ -48,8 +59,13 @@ void SceneMain::end() {
 	DeleteGraph(m_hMap);
 	DeleteGraph(m_hKey);
 	DeleteGraph(m_hDoor);
-	for (auto& handle : m_hPlayerGraphic) {
-		DeleteGraph(handle);
+	
+	for (auto& playerHandle : m_hPlayerGraphic) {
+		DeleteGraph(playerHandle);
+	}
+
+	for (auto& EnemyHandle : m_hEnemyGraphic) {
+		DeleteGraph(EnemyHandle);
 	}
 }
 
@@ -59,10 +75,15 @@ bool SceneMain::update() {
 		m_player.update();
 	}
 	else {
-		m_player.downGrade();
+		m_player.setCanNotMove(true);
+		m_player.update();
 	}
 
-	
+	if (m_enemy.isCol(m_player)) {
+		DrawString(0, 60, "HIT", GetColor(0, 0, 0));
+	}
+
+	m_enemy.update(m_player);
 
 	if (m_key.isCol(m_player)) {
 		m_key.setDead(true);
@@ -81,4 +102,5 @@ void SceneMain::draw() {
 	m_key.draw();
 	m_player.draw();
 	m_door.draw();
+	m_enemy.draw();
 }

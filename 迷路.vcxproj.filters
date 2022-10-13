@@ -19,6 +19,12 @@
     <Filter Include="ヘッダー ファイル\room">
       <UniqueIdentifier>{3444fa71-9daa-4642-bdce-458fed7b95b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Wall">
+      <UniqueIdentifier>{b5f18f33-ff45-4706-b6a6-2b9121af1415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Wall">
+      <UniqueIdentifier>{d653c2ce-2fc6-46c2-b11c-f9e61fae1169}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,9 +58,12 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="WallBase.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Wall</Filter>
     </ClCompile>
     <ClCompile Include="GreenWall.cpp">
+      <Filter>ソース ファイル\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -90,9 +99,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="WallBase.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Wall</Filter>
     </ClInclude>
     <ClInclude Include="GreenWall.h">
+      <Filter>ヘッダー ファイル\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Door.h"
 #include "GreenWall.h"
+#include "Enemy.h"
 
 class SceneMain {
 public:
@@ -28,6 +29,8 @@ private:
 	int m_hPlayerGraphic[Player::kGraphicDivNum];
 	//ドアのグラフィックハンドル
 	int m_hDoor;
+	//敵のグラフィックハンドル
+	int m_hEnemyGraphic[Enemy::kGraphicDivNum];
 
 	//マップ
 	Map m_map;
@@ -39,4 +42,6 @@ private:
 	Player m_player;
 	//緑の壁
 	GreenWall m_greenWall;
+	//敵
+	Enemy m_enemy;
 };

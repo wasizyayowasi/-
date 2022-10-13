@@ -1,8 +1,9 @@
 #pragma once
+
 #include "Vec2.h"
+#include "Player.h"
 
-
-class Player{
+class Enemy {
 public:
 	//定数定義
 
@@ -16,45 +17,50 @@ public:
 	static constexpr int kGraphicSizeY = 32;
 
 public:
-	Player();
-	virtual ~Player();
+	Enemy();
+	virtual ~Enemy();
 
 	// グラフィックデータ設定
 	void setHandle(int index, int handle) { m_handle[index] = handle; }
 
-	void setCanNotMove(bool isCanNotMove) { m_isCanNotMove = isCanNotMove; }
+	void setGraphic(int handle);
 
-	// プレイヤーの初期化
+	// サイズの取得
+	Vec2 getGraphSize() const { return m_graphSize; }
+	Vec2 getColSize() const { return m_colSize; }
+
 	void init();
 
 	//データの取得
-	Vec2 getPos()const { return m_pos; }				
+	Vec2 getPos()const { return m_pos; }					//左上座標
 
-	// 処理
-	void update();
-
-	////キャラを後退させる
-	//void downGrade();
-
-	// 描画
+	void update(Player& player);
 	void draw();
+
+	bool isCol(Player& player);
 
 private:
 	int m_handle[kGraphicDivNum];
 
-	// 表示位置
-	Vec2 m_pos;
-	//サイズ
-	Vec2 m_size;
-	// 移動
-	Vec2 m_vec;
+	// グラフィックの幅と高さ
+	Vec2 m_graphSize;
+	// 当たり判定の幅と高さ
+	Vec2 m_colSize;
 
-	//
-	bool m_isCanNotMove;
+	float enemySpeed;
+
+	float playerPosX;
+	float playerPosY;
 
 	//キャラクターのアニメーション
 	int m_animeNo;			//表示する番号
 	int m_animeFrame;
 	int m_animeDirections;	//表示する方向
 
+	//座標
+	Vec2 m_pos;
+	//サイズ
+	Vec2 m_size;
+	// 移動
+	Vec2 m_vec;
 };
