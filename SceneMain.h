@@ -27,10 +27,18 @@ private:
 	int m_hKey;
 	//プレイヤーのグラフィックハンドル
 	int m_hPlayerGraphic[Player::kGraphicDivNum];
+	//プレイヤー死亡時の演出のグラフィックハンドル
+	int m_hPlayerDead;
 	//ドアのグラフィックハンドル
 	int m_hDoor;
 	//敵のグラフィックハンドル
 	int m_hEnemyGraphic[Enemy::kGraphicDivNum];
+
+	//死亡フラグ
+	int playerDead;
+
+	//死亡演出を流す時間
+	int playerDeadTime;
 
 	//マップ
 	Map m_map;
@@ -44,4 +52,6 @@ private:
 	GreenWall m_greenWall;
 	//敵
 	Enemy m_enemy;
+	
+
 };

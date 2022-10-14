@@ -8,6 +8,9 @@ namespace
 	//キャラクターアニメーション1コマ当たりのフレーム数
 	constexpr int kAnimeChangeFrame = 8;
 
+	constexpr double angle = 1.6;
+	constexpr int playerDeadTime = 600;
+
 }
 
 Player::Player()
@@ -39,9 +42,6 @@ void Player::init()
 
 void Player::update()
 {
-
-	//DrawFormatString(0, 0, GetColor(255, 255, 255), "%d", m_animeFrame);
-
 
 	// パッド(もしくはキーボード)からの入力を取得する
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
@@ -175,6 +175,9 @@ void Player::update()
 void Player::draw()
 {
 	DrawString(0, 0, "持ち物", GetColor(0, 0, 0));
+
+	
+
 	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
 	//デバッグ用
 	DrawBox(getPos().x, getPos().y, getPos().x + 32, getPos().y + 32, GetColor(0, 0, 0), false);
@@ -209,4 +212,26 @@ void Player::draw()
 	DrawBox(437, 480, 447, 571, GetColor(0, 0, 255), false);
 	DrawBox(352, 405, 362, 571, GetColor(0, 0,255), false);
 	DrawBox(270, 480, 280, 571, GetColor(0, 0, 255), false);
+}
+
+void Player::clear() {
+
+	bool isKey = false;
+
+	m_pos.y -= 0.2;
+	if (m_pos.y < -32) {
+		m_pos.y = -32;
+	}
+	m_animeDirections = 3;
+	isKey = true;
+
+	//キャラクターのアニメーション
+	if (isKey) m_animeFrame++;
+}
+
+void Player::deadDraw() {
+	DrawRotaGraph(static_cast<int>(m_pos.x) + 32, static_cast<int>(m_pos.y) + 32, 1, angle, m_handle[4], true, false);
+}
+void Player::soul() {
+	DrawGraph(static_cast<int>(m_pos.x) + 17, static_cast<int>(m_pos.y), m_deadHandle, true);
 }

@@ -16,6 +16,7 @@ SceneMain::SceneMain() {
 	m_hMap = -1;
 	m_hKey = -1;
 	m_hDoor = -1;
+	m_hPlayerDead = -1;
 
 	for (auto& playerHandle : m_hPlayerGraphic) {
 		playerHandle = -1;
@@ -23,6 +24,9 @@ SceneMain::SceneMain() {
 	for (auto& EnemyHandle : m_hEnemyGraphic) {
 		EnemyHandle = -1;
 	}
+
+	playerDeadTime = 400;
+
 }
 
 SceneMain::~SceneMain() {
@@ -34,10 +38,12 @@ void SceneMain::init() {
 	m_hMap = LoadGraph("data/labyrinth.png");
 	m_hKey = LoadGraph("data/kagi.png");
 	m_hDoor = LoadGraph("data/door.png");
-	
+	m_hPlayerDead = LoadGraph("data/tamasii.png");
+
 	m_map.setHandle(m_hMap);
 	m_key.setHandle(m_hKey);
 	m_door.setHandle(m_hDoor);
+	m_player.setPlayerDeadHandle(m_hPlayerDead);
 
 	LoadDivGraph(kPlayerGraphicFilename, Player::kGraphicDivNum, Player::kGraphicDivX, Player::kGraphicDivY, Player::kGraphicSizeX, Player::kGraphicSizeY, m_hPlayerGraphic);
 	LoadDivGraph(kEnemyGraphicFilename, Enemy::kGraphicDivNum, Enemy::kGraphicDivX, Enemy::kGraphicDivY, Enemy::kGraphicSizeX, Enemy::kGraphicSizeY, m_hEnemyGraphic);
@@ -59,7 +65,8 @@ void SceneMain::end() {
 	DeleteGraph(m_hMap);
 	DeleteGraph(m_hKey);
 	DeleteGraph(m_hDoor);
-	
+	DeleteGraph(m_hPlayerDead);
+
 	for (auto& playerHandle : m_hPlayerGraphic) {
 		DeleteGraph(playerHandle);
 	}
@@ -71,7 +78,21 @@ void SceneMain::end() {
 
 // –ˆƒtƒŒ[ƒ€‚Ìˆ—
 bool SceneMain::update() {
-	if (!m_greenWall.update(m_player)) {
+	
+	if (m_enemy.isCol(m_player)) {
+		if(playerDeadTime > 0){
+			//DrawString(0, 60, "HIT", GetColor(0, 0, 0));
+			m_player.deadDraw();
+			if (playerDeadTime < 100) {
+				m_player.soul();
+			}
+			playerDeadTime--;
+		}
+		if (playerDeadTime == 0) {
+			return true;
+		}
+	}
+	else if (!m_greenWall.update(m_player)) {
 		m_player.update();
 	}
 	else {
@@ -79,11 +100,9 @@ bool SceneMain::update() {
 		m_player.update();
 	}
 
-	if (m_enemy.isCol(m_player)) {
-		DrawString(0, 60, "HIT", GetColor(0, 0, 0));
+	if (!m_door.isCol(m_player)) {
+		m_enemy.update(m_player);
 	}
-
-	m_enemy.update(m_player);
 
 	if (m_key.isCol(m_player)) {
 		m_key.setDead(true);
@@ -91,6 +110,8 @@ bool SceneMain::update() {
 	}
 	if (m_door.isCol(m_player)) {
 		m_door.setDead(true);
+		m_player.clear();
+		return;
 	}
 
 	return false;
@@ -100,7 +121,9 @@ bool SceneMain::update() {
 void SceneMain::draw() {
 	m_map.draw();
 	m_key.draw();
-	m_player.draw();
 	m_door.draw();
 	m_enemy.draw();
+	if (!m_enemy.isCol(m_player)) {
+		m_player.draw();
+	}
 }

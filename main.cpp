@@ -2,6 +2,7 @@
 #include "game.h"
 #include "SceneMain.h"
 #include "SceneTitle.h"
+#include "SceneEnd.h"
 
 // ÉvÉçÉOÉâÉÄÇÕ WinMain Ç©ÇÁénÇ‹ÇËÇ‹Ç∑
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -29,6 +30,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	SceneTitle sceneTitle;
 
+	SceneEnd sceneEnd;
+
 	switch (sceneNo) {
 	case 0:
 		sceneTitle.init();
@@ -36,6 +39,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	case 1:
 		sceneMain.init();
 		break;
+	case 2:
+		sceneEnd.init();
 	}
 
 	while (ProcessMessage() == 0) {
@@ -45,6 +50,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ClearDrawScreen();
 
 		bool isChange = false;
+		bool isEnd = false;
 		switch (sceneNo) {
 		case 0:
 			isChange = sceneTitle.update();
@@ -57,8 +63,23 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 			break;
 		case 1:
-			sceneMain.update();
+			isChange = sceneMain.update();
+			isEnd = sceneMain.update();
 			sceneMain.draw();
+			if (isChange) {
+				sceneMain.end();
+				sceneEnd.init();
+				sceneNo = 2;
+			}
+			else {
+				sceneMain.end();
+
+				sceneNo = 3;
+			}
+		case 2:
+
+			sceneEnd.draw();
+			sceneEnd.end();
 			break;
 		}
 

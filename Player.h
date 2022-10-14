@@ -21,6 +21,7 @@ public:
 
 	// グラフィックデータ設定
 	void setHandle(int index, int handle) { m_handle[index] = handle; }
+	void setPlayerDeadHandle(int handle) { m_deadHandle = handle; }
 
 	void setCanNotMove(bool isCanNotMove) { m_isCanNotMove = isCanNotMove; }
 
@@ -39,8 +40,16 @@ public:
 	// 描画
 	void draw();
 
+	void clear();
+
+	void deadDraw();
+
+	void soul();
+
 private:
 	int m_handle[kGraphicDivNum];
+
+	int m_deadHandle;
 
 	// 表示位置
 	Vec2 m_pos;
