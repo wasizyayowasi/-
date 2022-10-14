@@ -25,8 +25,6 @@ SceneMain::SceneMain() {
 		EnemyHandle = -1;
 	}
 
-	playerDeadTime = 250;
-
 }
 
 SceneMain::~SceneMain() {
@@ -60,6 +58,8 @@ void SceneMain::init() {
 	m_key.init();
 	m_player.init();
 	m_enemy.init();
+
+	playerDeadTime = 250;
 
 }
 

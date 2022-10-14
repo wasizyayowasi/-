@@ -22,7 +22,7 @@ Enemy::~Enemy() {
 
 void Enemy::init() {
 	m_pos.x = Game::kScreenWidth / 2 - kGraphicSizeX / 2;
-	m_pos.y = 0 + kGraphicSizeY;
+	m_pos.y = kGraphicSizeY + 32;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
 
