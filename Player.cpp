@@ -174,13 +174,11 @@ void Player::update()
 
 void Player::draw()
 {
+	SetFontSize(0);
 	DrawString(0, 0, "持ち物", GetColor(0, 0, 0));
-
-	
-
 	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
 	//デバッグ用
-	DrawBox(getPos().x, getPos().y, getPos().x + 32, getPos().y + 32, GetColor(0, 0, 0), false);
+	//DrawBox(getPos().x, getPos().y, getPos().x + 32, getPos().y + 32, GetColor(0, 0, 0), false);
 
 	//外壁確認
 	DrawBox(100, 25, 115, 571, GetColor(255, 0, 0), false);		//左
@@ -214,7 +212,7 @@ void Player::draw()
 	DrawBox(270, 480, 280, 571, GetColor(0, 0, 255), false);
 }
 
-void Player::clear() {
+bool Player::clear() {
 
 	bool isKey = false;
 
@@ -227,6 +225,18 @@ void Player::clear() {
 
 	//キャラクターのアニメーション
 	if (isKey) m_animeFrame++;
+
+	if (m_animeFrame >= kGraphicDivX * kAnimeChangeFrame) {
+		m_animeFrame = 0;
+	}
+
+	int tempAnimeNo = m_animeFrame / kAnimeChangeFrame;
+	m_animeNo = m_animeDirections * kGraphicDivX + tempAnimeNo;
+
+	if (m_pos.y == -32) {
+		return true;
+	}
+	return false;
 }
 
 void Player::deadDraw() {

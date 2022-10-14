@@ -63,7 +63,7 @@ void Enemy::update(Player& player) {
 void Enemy::draw() {
 	//DrawFormatString(0,575,GetColor(0,0,0),"(%f,%f)",m_pos.x,m_pos.y);
 	//DrawFormatString(0, 575, GetColor(0, 0, 0), "(%f,%f)", m_pos.x, m_pos.y);
-	DrawBox(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), static_cast<int>(m_pos.x) + 32, static_cast<int>(m_pos.y) + 32,GetColor(0,0,0),false);
+	//DrawBox(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), static_cast<int>(m_pos.x) + 32, static_cast<int>(m_pos.y) + 32,GetColor(0,0,0),false);
 	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
 }
 

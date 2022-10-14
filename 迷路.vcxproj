@@ -159,6 +159,7 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RoomBase.cpp" />
+    <ClCompile Include="SceneDead.cpp" />
     <ClCompile Include="SceneEnd.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RoomBase.h" />
+    <ClInclude Include="SceneDead.h" />
     <ClInclude Include="SceneEnd.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneTitle.h" />

@@ -10,10 +10,8 @@ namespace {
 }
 
 Key::Key() {
-	m_keyX = 220;
-	m_keyY = 200;
 	m_handle = -1;
-	m_isDead = false;
+	
 }
 
 Key:: ~Key() {
@@ -22,8 +20,9 @@ Key:: ~Key() {
 
 //ƒ}ƒbƒv‚Ì‰Šú‰»
 void Key::init() {
-
-
+	m_keyX = 220;
+	m_keyY = 200;
+	m_isDead = false;
 }
 
 //•`‰æ
@@ -31,6 +30,11 @@ void Key::draw() {
 	if (m_isDead) {
 		m_keyX = 0;
 		m_keyY = 20;
+	}
+	else {
+		m_keyX = 220;
+		m_keyY = 200;
+		setDead(false);
 	}
 	
 	DrawGraph(m_keyX, m_keyY, m_handle, true);

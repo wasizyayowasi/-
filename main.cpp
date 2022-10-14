@@ -3,6 +3,7 @@
 #include "SceneMain.h"
 #include "SceneTitle.h"
 #include "SceneEnd.h"
+#include "SceneDead.h"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -21,9 +22,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	//DrawPixel(320, 240, GetColor(255, 255, 255));	// 点を打つ
 
+	
 	//ダブルバッファモード
 	SetDrawScreen(DX_SCREEN_BACK);
-	int sceneNo = 1;
+	int sceneNo = 0;
 
 	SceneMain sceneMain;
 	sceneMain.init();
@@ -31,6 +33,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SceneTitle sceneTitle;
 
 	SceneEnd sceneEnd;
+
+	SceneDead sceneDead;
 
 	switch (sceneNo) {
 	case 0:
@@ -41,7 +45,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		break;
 	case 2:
 		sceneEnd.init();
+		break;
+	case 3:
+		sceneDead.init();
+		break;
 	}
+	
 
 	while (ProcessMessage() == 0) {
 
@@ -50,12 +59,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ClearDrawScreen();
 
 		bool isChange = false;
-		bool isEnd = false;
+		int endChange = 0;
+
+		int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+
 		switch (sceneNo) {
 		case 0:
 			isChange = sceneTitle.update();
 			sceneTitle.draw();
 			if (isChange) {
+				InitFontToHandle();
 				sceneTitle.end();
 
 				sceneMain.init();
@@ -63,23 +76,38 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 			break;
 		case 1:
-			isChange = sceneMain.update();
-			isEnd = sceneMain.update();
+			endChange = sceneMain.update();
 			sceneMain.draw();
-			if (isChange) {
+			if (endChange == 1) {
 				sceneMain.end();
 				sceneEnd.init();
 				sceneNo = 2;
+				break;
 			}
-			else {
+			else if(endChange == 2){
 				sceneMain.end();
-
+				sceneDead.init();
 				sceneNo = 3;
+				break;
 			}
+			break;
 		case 2:
-
 			sceneEnd.draw();
 			sceneEnd.end();
+			if (padState & PAD_INPUT_3) {
+				//sceneMain.init();
+				sceneMain.end();
+				sceneNo = 0;
+			}
+			break;
+		case 3:
+			sceneDead.draw();
+			sceneDead.end();
+			if (padState & PAD_INPUT_3) {
+				//sceneMain.init();
+				sceneMain.end();
+				sceneNo = 0;
+			}
 			break;
 		}
 
@@ -89,7 +117,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ScreenFlip();
 
 		//escを押したら終了する
-		if (CheckHitKey(KEY_INPUT_ESCAPE))break;
+		if (padState & PAD_INPUT_2)break;
 
 		//fpsを60に固定
 		while (GetNowHiPerformanceCount() - time < 16667) {
@@ -104,6 +132,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		break;
 	case 1:
 		sceneMain.end();
+		break;
+	case 2:
+		sceneEnd.end();
+		break;
+	case 3:
+		sceneDead.end();
 		break;
 	}
 

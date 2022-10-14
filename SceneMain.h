@@ -17,7 +17,7 @@ public:
 	void end();
 
 	// 毎フレームの処理
-	bool update();
+	int update();
 	// 毎フレームの描画
 	void draw();
 private:

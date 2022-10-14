@@ -25,7 +25,7 @@ SceneMain::SceneMain() {
 		EnemyHandle = -1;
 	}
 
-	playerDeadTime = 400;
+	playerDeadTime = 250;
 
 }
 
@@ -56,8 +56,11 @@ void SceneMain::init() {
 		m_enemy.setHandle(i, m_hEnemyGraphic[i]);
 	}
 
+	m_door.init();
+	m_key.init();
 	m_player.init();
 	m_enemy.init();
+
 }
 
 // 終了処理
@@ -77,20 +80,35 @@ void SceneMain::end() {
 }
 
 // 毎フレームの処理
-bool SceneMain::update() {
+int SceneMain::update() {
 	
+	if (m_key.isCol(m_player)) {
+		m_key.setDead(true);
+		m_door.setPadlockDead(true);
+	}
+	if (m_door.isCol(m_player)) {
+		m_door.setDead(true);
+		if (m_player.clear()) {
+			return 1;
+		}
+		return 0;
+	}
+
 	if (m_enemy.isCol(m_player)) {
-		if(playerDeadTime > 0){
+		if(playerDeadTime >= 0){
 			//DrawString(0, 60, "HIT", GetColor(0, 0, 0));
 			m_player.deadDraw();
 			if (playerDeadTime < 100) {
 				m_player.soul();
 			}
 			playerDeadTime--;
+			DrawFormatString(0, 300, GetColor(0, 0, 0), "%d", playerDeadTime);
+			
 		}
-		if (playerDeadTime == 0) {
-			return true;
+		else {
+			return 2;
 		}
+		
 	}
 	else if (!m_greenWall.update(m_player)) {
 		m_player.update();
@@ -101,20 +119,12 @@ bool SceneMain::update() {
 	}
 
 	if (!m_door.isCol(m_player)) {
-		m_enemy.update(m_player);
+		if (!m_enemy.isCol(m_player)) {
+			m_enemy.update(m_player);
+		}
 	}
 
-	if (m_key.isCol(m_player)) {
-		m_key.setDead(true);
-		m_door.setPadlockDead(true);
-	}
-	if (m_door.isCol(m_player)) {
-		m_door.setDead(true);
-		m_player.clear();
-		return;
-	}
-
-	return false;
+	return 0;
 }
 
 // 毎フレームの描画

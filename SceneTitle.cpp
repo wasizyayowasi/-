@@ -22,20 +22,9 @@ void SceneTitle::init() {
 
 void SceneTitle::end() {
 	SetDrawBright(255, 255, 255);
-}
+};
 
 bool SceneTitle::update() {
-
-	//m_fadeBright += m_fadeSpeed;
-	//if (m_fadeBright > 255) {
-	//	m_fadeBright = 255;
-	//	m_fadeSpeed = 0;
-	//}
-	//if ((m_fadeBright <= 0) && (m_fadeSpeed < 0)) {
-	//	//フェードアウトしきったら次のシーンへ
-	//	m_fadeBright = 0;
-	//	return true;
-	//}
 
 
 	// キー入力処理
@@ -55,4 +44,7 @@ void SceneTitle::draw() {
 	SetFontSize(fontSize);
 	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
 	DrawString(Game::kScreenWidth / 2 - 185, Game::kScreenHeight / 6, "めいろ", GetColor(0, 0, 0));
+	SetFontSize(60);
+	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 50, "Aで挑戦", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 120, "Bで終了", GetColor(0, 0, 0));
 }

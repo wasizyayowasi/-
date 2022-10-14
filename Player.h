@@ -40,7 +40,7 @@ public:
 	// •`‰æ
 	void draw();
 
-	void clear();
+	bool clear();
 
 	void deadDraw();
 

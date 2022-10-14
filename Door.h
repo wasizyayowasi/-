@@ -11,6 +11,8 @@ public:
 	//グラフィックデータの設定
 	void setHandle(int handle) { m_handle = handle; }
 
+	void init();
+
 	//
 	void draw();
 

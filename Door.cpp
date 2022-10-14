@@ -11,12 +11,16 @@ namespace {
 
 Door::Door() {
 	m_handle = -1;
-	m_isDead = false;
-	m_isPadlockDead = false;
+	
 }
 
 Door::~Door() {
 
+}
+
+void Door::init() {
+	m_isDead = false;
+	m_isPadlockDead = false;
 }
 
 void Door::draw() {
@@ -27,22 +31,20 @@ void Door::draw() {
 
 bool Door::isCol(Player& player) {
 
-		float doorLeft = getPos().x + m_doorX;
-		float doorRight = getPos().x + m_doorX + kSizeX;
-		float doorTop = getPos().y + m_doorY;
-		float doorBottom = getPos().y + m_doorY + kSizeY;
+	float doorLeft = getPos().x + m_doorX;
+	float doorRight = getPos().x + m_doorX + kSizeX;
+	float doorTop = getPos().y + m_doorY;
+	float doorBottom = getPos().y + m_doorY + kSizeY;
 
-		float playerLeft = player.getPos().x;
-		float playerRight = player.getPos().x + 32;
-		float playerTop = player.getPos().y;
-		float playerBottom = player.getPos().y + 32;
+	float playerLeft = player.getPos().x;
+	float playerRight = player.getPos().x + 32;
+	float playerTop = player.getPos().y;
+	float playerBottom = player.getPos().y + 32;
 
-		if (playerTop < doorBottom) {
-			if (m_isPadlockDead) {
-				return true;
-			}
+	if (playerTop < doorBottom) {
+		if (m_isPadlockDead) {
+			return true;
 		}
-
-		return false;
-
+	}
+	return false;
 }
