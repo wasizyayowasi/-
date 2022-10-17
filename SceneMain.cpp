@@ -132,8 +132,8 @@ void SceneMain::draw() {
 	m_map.draw();
 	m_key.draw();
 	m_door.draw();
-	m_enemy.draw();
 	if (!m_enemy.isCol(m_player)) {
 		m_player.draw();
 	}
+	m_enemy.draw();
 }

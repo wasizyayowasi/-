@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\room">
-      <UniqueIdentifier>{c05b9ff9-8089-463a-b299-3d4e9c6771bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\room">
-      <UniqueIdentifier>{3444fa71-9daa-4642-bdce-458fed7b95b7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\Wall">
       <UniqueIdentifier>{b5f18f33-ff45-4706-b6a6-2b9121af1415}</UniqueIdentifier>
     </Filter>
@@ -31,6 +25,12 @@
     <Filter Include="ヘッダー ファイル\Scene">
       <UniqueIdentifier>{bded4b88-d02a-4dac-8d81-65708f5db6be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\object">
+      <UniqueIdentifier>{f1f65922-1b1c-45e0-848c-41c478b76c1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\object">
+      <UniqueIdentifier>{463954ae-5142-41de-98d6-3b260a686a43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,22 +39,7 @@
     <ClCompile Include="Vec2.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="StartRoom.cpp">
-      <Filter>ソース ファイル\room</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="RoomBase.cpp">
-      <Filter>ソース ファイル\room</Filter>
-    </ClCompile>
-    <ClCompile Include="Key.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Door.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="WallBase.cpp">
@@ -62,9 +47,6 @@
     </ClCompile>
     <ClCompile Include="GreenWall.cpp">
       <Filter>ソース ファイル\Wall</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="SceneEnd.cpp">
       <Filter>ソース ファイル\Scene</Filter>
@@ -78,6 +60,18 @@
     <ClCompile Include="SceneDead.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>ソース ファイル\object</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソース ファイル\object</Filter>
+    </ClCompile>
+    <ClCompile Include="Key.cpp">
+      <Filter>ソース ファイル\object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -89,29 +83,11 @@
     <ClInclude Include="Map.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="RoomBase.h">
-      <Filter>ヘッダー ファイル\room</Filter>
-    </ClInclude>
-    <ClInclude Include="StartRoom.h">
-      <Filter>ヘッダー ファイル\room</Filter>
-    </ClInclude>
-    <ClInclude Include="Key.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Door.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="WallBase.h">
       <Filter>ヘッダー ファイル\Wall</Filter>
     </ClInclude>
     <ClInclude Include="GreenWall.h">
       <Filter>ヘッダー ファイル\Wall</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneEnd.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
@@ -124,6 +100,18 @@
     </ClInclude>
     <ClInclude Include="SceneDead.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>ヘッダー ファイル\object</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ヘッダー ファイル\object</Filter>
+    </ClInclude>
+    <ClInclude Include="Key.h">
+      <Filter>ヘッダー ファイル\object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>ヘッダー ファイル\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

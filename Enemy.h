@@ -50,6 +50,8 @@ private:
 	float playerPosX;
 	float playerPosY;
 
+	int m_waitFrame;
+
 	//キャラクターのアニメーション
 	int m_animeNo;			//表示する番号
 	int m_animeFrame;
