@@ -37,6 +37,8 @@ public:
 
 	bool isCol(Player& player);
 
+	void pushBotan(bool pushBotan) { m_isPush = pushBotan; }
+
 private:
 	int m_handle[kGraphicDivNum];
 
@@ -51,6 +53,8 @@ private:
 	float playerPosY;
 
 	int m_waitFrame;
+
+	bool m_isPush;
 
 	//キャラクターのアニメーション
 	int m_animeNo;			//表示する番号

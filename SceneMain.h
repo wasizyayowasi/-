@@ -5,6 +5,7 @@
 #include "Door.h"
 #include "GreenWall.h"
 #include "Enemy.h"
+#include "Botan.h"
 
 class SceneMain {
 public:
@@ -33,6 +34,8 @@ private:
 	int m_hDoor;
 	//敵のグラフィックハンドル
 	int m_hEnemyGraphic[Enemy::kGraphicDivNum];
+	//ボタンのグラフィックハンドル
+	int m_hBotan;
 
 	//死亡フラグ
 	int playerDead;
@@ -52,6 +55,7 @@ private:
 	GreenWall m_greenWall;
 	//敵
 	Enemy m_enemy;
-	
+	//ボタン
+	Botan m_botan;
 
 };

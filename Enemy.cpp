@@ -37,9 +37,16 @@ void Enemy::init() {
 	m_animeFrame = 0;
 	m_animeDirections = 0;
 
+	m_isPush = false;
+
 }
 
 void Enemy::update(Player& player) {
+
+	if (m_isPush) {
+		m_waitFrame = 600;
+		m_isPush = false;
+	}
 
 	if (m_waitFrame > 0) {
 		m_waitFrame--;

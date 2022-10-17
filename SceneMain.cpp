@@ -17,6 +17,7 @@ SceneMain::SceneMain() {
 	m_hKey = -1;
 	m_hDoor = -1;
 	m_hPlayerDead = -1;
+	m_hBotan = -1;
 
 	for (auto& playerHandle : m_hPlayerGraphic) {
 		playerHandle = -1;
@@ -37,11 +38,13 @@ void SceneMain::init() {
 	m_hKey = LoadGraph("data/kagi.png");
 	m_hDoor = LoadGraph("data/door.png");
 	m_hPlayerDead = LoadGraph("data/tamasii.png");
+	m_hBotan = LoadGraph("data/botan.png");
 
 	m_map.setHandle(m_hMap);
 	m_key.setHandle(m_hKey);
 	m_door.setHandle(m_hDoor);
 	m_player.setPlayerDeadHandle(m_hPlayerDead);
+	m_botan.setHandle(m_hBotan);
 
 	LoadDivGraph(kPlayerGraphicFilename, Player::kGraphicDivNum, Player::kGraphicDivX, Player::kGraphicDivY, Player::kGraphicSizeX, Player::kGraphicSizeY, m_hPlayerGraphic);
 	LoadDivGraph(kEnemyGraphicFilename, Enemy::kGraphicDivNum, Enemy::kGraphicDivX, Enemy::kGraphicDivY, Enemy::kGraphicSizeX, Enemy::kGraphicSizeY, m_hEnemyGraphic);
@@ -55,6 +58,7 @@ void SceneMain::init() {
 	}
 
 	m_door.init();
+	m_botan.init();
 	m_key.init();
 	m_player.init();
 	m_enemy.init();
@@ -69,6 +73,7 @@ void SceneMain::end() {
 	DeleteGraph(m_hKey);
 	DeleteGraph(m_hDoor);
 	DeleteGraph(m_hPlayerDead);
+	DeleteGraph(m_hBotan);
 
 	for (auto& playerHandle : m_hPlayerGraphic) {
 		DeleteGraph(playerHandle);
@@ -118,6 +123,11 @@ int SceneMain::update() {
 		m_player.update();
 	}
 
+	if (m_botan.isCol(m_player)) {
+		m_botan.setHandle(true);
+		m_enemy.pushBotan(true);
+	}
+
 	if (!m_door.isCol(m_player)) {
 		if (!m_enemy.isCol(m_player)) {
 			m_enemy.update(m_player);
@@ -130,6 +140,7 @@ int SceneMain::update() {
 // ñàÉtÉåÅ[ÉÄÇÃï`âÊ
 void SceneMain::draw() {
 	m_map.draw();
+	m_botan.draw();
 	m_key.draw();
 	m_door.draw();
 	if (!m_enemy.isCol(m_player)) {

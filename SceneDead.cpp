@@ -36,7 +36,6 @@ bool SceneDead::update() {
 
 void SceneDead::draw() {
 	SetFontSize(fontSize);
-	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
 	DrawString(Game::kScreenWidth / 2 - 250, Game::kScreenHeight / 6, "YOU DIED", GetColor(255, 0, 0));
 	SetFontSize(60);
 	DrawString(Game::kScreenWidth / 2 - 125, Game::kScreenHeight / 3 + 50, "XÇ≈çƒíßêÌ", GetColor(0, 0, 0));

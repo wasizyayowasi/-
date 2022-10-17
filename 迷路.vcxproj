@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Botan.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GreenWall.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="WallBase.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Botan.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="game.h" />
