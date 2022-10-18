@@ -36,9 +36,8 @@ bool SceneEnd::update() {
 
 void SceneEnd::draw() {
 	SetFontSize(fontSize);
-	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
-	DrawString(Game::kScreenWidth / 2 - 185, Game::kScreenHeight / 6, "クリア", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 130, Game::kScreenHeight / 6, "脱出", GetColor(255, 255, 0));
 	SetFontSize(60);
-	DrawString(Game::kScreenWidth / 2 - 125, Game::kScreenHeight / 3 + 50, "Xで再挑戦", GetColor(0, 0, 0));
-	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 120, "Bで終了", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 125, Game::kScreenHeight / 3 + 50, "Xで再挑戦", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 120, "Bで終了", GetColor(255, 255, 255));
 }

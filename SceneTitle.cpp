@@ -42,9 +42,9 @@ bool SceneTitle::update() {
 
 void SceneTitle::draw() {
 	SetFontSize(fontSize);
-	SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
-	DrawString(Game::kScreenWidth / 2 - 185, Game::kScreenHeight / 6, "ÇﬂÇ¢ÇÎ", GetColor(0, 0, 0));
+	//SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
+	DrawString(Game::kScreenWidth / 2 - 185, Game::kScreenHeight / 6, "ÇﬂÇ¢ÇÎ", GetColor(255, 255, 255));
 	SetFontSize(60);
-	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 50, "AÇ≈íßêÌ", GetColor(0, 0, 0));
-	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 120, "BÇ≈èIóπ", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 50, "AÇ≈íßêÌ", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 120, "BÇ≈èIóπ", GetColor(255, 255, 255));
 }

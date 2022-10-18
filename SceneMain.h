@@ -24,6 +24,7 @@ public:
 private:
 	//マップのグラフィックハンドル
 	int m_hMap;
+	int m_hBackgroundHnadle;
 	//鍵のグラフィックハンドル
 	int m_hKey;
 	//プレイヤーのグラフィックハンドル
@@ -36,6 +37,13 @@ private:
 	int m_hEnemyGraphic[Enemy::kGraphicDivNum];
 	//ボタンのグラフィックハンドル
 	int m_hBotan;
+
+	//歩くサウンド
+	int m_sPlayer;
+	//鍵取得のサウンド
+	int m_sKeyHandle;
+	//ボタンを押した時のサウンド
+	int m_sPushBotan;
 
 	//死亡フラグ
 	int playerDead;

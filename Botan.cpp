@@ -35,7 +35,17 @@ void Botan::draw() {
 	DrawBox(m_keyX, m_keyY, m_keyX + 20, m_keyY + 39, GetColor(255, 0, 0), false);*/
 }
 
+void Botan::setDead(bool isDead) {
+	m_isDead = isDead;
+	if (m_isDead) {
+		ChangeVolumeSoundMem(160, m_botanSound);
+		PlaySoundMem(m_botanSound, DX_PLAYTYPE_BACK, true);
+	}
+}
+
 bool Botan::isCol(Player& player) {
+
+	if (m_isDead) return false;
 
 	float botanLeft = getPos().x + m_botanX;
 	float botanRight = getPos().x + m_botanX + kSizeX;

@@ -23,5 +23,6 @@ void Map::init() {
 
 //•`‰æ
 void Map::draw() {
+	DrawGraph(0, 0, m_backgroundHnadle, false);
 	DrawGraph(mapX, mapY, m_handle, true);
 }

@@ -78,6 +78,10 @@ void Enemy::draw() {
 	//DrawFormatString(0,575,GetColor(0,0,0),"(%f,%f)",m_pos.x,m_pos.y);
 	//DrawFormatString(0, 575, GetColor(0, 0, 0), "(%f,%f)", m_pos.x, m_pos.y);
 	//DrawBox(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), static_cast<int>(m_pos.x) + 32, static_cast<int>(m_pos.y) + 32,GetColor(0,0,0),false);
+	SetFontSize(13);
+	DrawString(700, 0, "‚¨‰»‚¯‘Ò‹@ŽžŠÔ", GetColor(255, 255, 255));
+	SetFontSize(20);
+	DrawFormatString(750, 20, GetColor(255, 255, 0), "%d", m_waitFrame / 60);
 	DrawGraph(m_pos.x, m_pos.y, m_handle[m_animeNo], true);
 }
 

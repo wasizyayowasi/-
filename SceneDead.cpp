@@ -38,6 +38,6 @@ void SceneDead::draw() {
 	SetFontSize(fontSize);
 	DrawString(Game::kScreenWidth / 2 - 250, Game::kScreenHeight / 6, "YOU DIED", GetColor(255, 0, 0));
 	SetFontSize(60);
-	DrawString(Game::kScreenWidth / 2 - 125, Game::kScreenHeight / 3 + 50, "XÇ≈çƒíßêÌ", GetColor(0, 0, 0));
-	DrawString(Game::kScreenWidth / 2 - 125, Game::kScreenHeight / 3 + 120, "BÇ≈èIóπ", GetColor(0, 0, 0));
+	DrawString(Game::kScreenWidth / 2 - 125, Game::kScreenHeight / 3 + 50, "XÇ≈çƒíßêÌ", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 125, Game::kScreenHeight / 3 + 120, "BÇ≈èIóπ", GetColor(255, 255, 255));
 }

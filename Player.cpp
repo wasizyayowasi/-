@@ -38,6 +38,7 @@ void Player::init()
 	m_animeFrame = 0;
 	m_animeDirections = 0;
 
+	count = 0;
 }
 
 void Player::update()
@@ -46,10 +47,13 @@ void Player::update()
 	// パッド(もしくはキーボード)からの入力を取得する
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 	bool isKey = false;
+
+	
+
 	if (padState & PAD_INPUT_UP)
 	{
 		if (m_isCanNotMove) {
-			m_pos.y = m_pos.y + 4;
+			m_pos.y = m_pos.y;
 			m_isCanNotMove = false;
 		}
 		else {
@@ -58,6 +62,7 @@ void Player::update()
 				m_pos.y = 0;
 			}
 			m_animeDirections = 3;
+
 			isKey = true;
 		}
 		
@@ -65,7 +70,7 @@ void Player::update()
 	if (padState & PAD_INPUT_DOWN)
 	{
 		if (m_isCanNotMove) {
-			m_pos.y = m_pos.y - 4;
+			m_pos.y = m_pos.y;
 			m_isCanNotMove = false;
 		}
 		else {
@@ -81,7 +86,7 @@ void Player::update()
 	if (padState & PAD_INPUT_LEFT)
 	{
 		if (m_isCanNotMove) {
-			m_pos.x = m_pos.x + 4;
+			m_pos.x = m_pos.x - 0.5f;
 			m_isCanNotMove = false;
 		}
 		else {
@@ -97,7 +102,7 @@ void Player::update()
 	if (padState & PAD_INPUT_RIGHT)
 	{
 		if (m_isCanNotMove) {
-			m_pos.x = m_pos.x - 4;
+			m_pos.x = m_pos.x;
 			m_isCanNotMove = false;
 		}
 		else {
@@ -175,7 +180,8 @@ void Player::update()
 void Player::draw()
 {
 	SetFontSize(0);
-	DrawString(0, 0, "持ち物", GetColor(0, 0, 0));
+	DrawString(23, 0, "持ち物", GetColor(255, 255, 255));
+	DrawBox(0, 30, 50, 80, GetColor(255, 255, 255), true);
 	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
 	//デバッグ用
 	//DrawBox(getPos().x, getPos().y, getPos().x + 32, getPos().y + 32, GetColor(0, 0, 0), false);

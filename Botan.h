@@ -9,6 +9,8 @@ public:
 
 	//グラフィックデータの設定
 	void setHandle(int handle) { m_handle = handle; }
+	//サウンドの設定
+	void setSound(int sound) { m_botanSound = sound; }
 	//マップの初期化
 	void init();
 
@@ -19,7 +21,7 @@ public:
 	bool isCol(Player& player);
 
 	//ボタンの切り替え判定用
-	void setDead(bool isDead) { m_isDead = isDead; }
+	void setDead(bool isDead);
 
 	//データの取得
 	Vec2 getPos()const { return m_pos; }					//左上座標
@@ -32,6 +34,8 @@ private:
 	int m_botanY;
 	//ハンドル
 	int m_handle;
+	//サウンド
+	int m_botanSound;
 	//生死
 	bool m_isDead;
 	//座標

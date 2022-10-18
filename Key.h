@@ -10,6 +10,10 @@ public:
 
 	//グラフィックデータの設定
 	void setHandle(int handle) { m_handle = handle; }
+
+	//サウンドデータの設定
+	void setSound(int sound) { m_keySound = sound; }
+
 	//マップの初期化
 	void init();
 	
@@ -20,7 +24,7 @@ public:
 	bool isCol(Player& player);
 
 	//鍵の死亡判定用
-	void setDead(bool isDead) { m_isDead = isDead; }
+	void setDead(bool isDead);
 	
 	//データの取得
 	Vec2 getPos()const { return m_pos; }					//左上座標
@@ -33,6 +37,9 @@ private:
 	int m_keyY;
 	//ハンドル
 	int m_handle;
+	//鍵取得のサウンドハンドル
+	int m_keySound;
+
 	//生死
 	bool m_isDead;
 	//座標

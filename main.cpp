@@ -25,7 +25,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
 	//ダブルバッファモード
 	SetDrawScreen(DX_SCREEN_BACK);
-	int sceneNo = 0;
+	int sceneNo = 1;
 
 	SceneMain sceneMain;
 	sceneMain.init();
@@ -110,8 +110,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 			}
 			break;
 		}
-
-		SetBackgroundColor(255, 255, 255);
 
 		//裏画面を表画面に切り替える
 		ScreenFlip();

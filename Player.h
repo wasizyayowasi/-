@@ -22,6 +22,7 @@ public:
 	// グラフィックデータ設定
 	void setHandle(int index, int handle) { m_handle[index] = handle; }
 	void setPlayerDeadHandle(int handle) { m_deadHandle = handle; }
+	void setSound(int sound) { m_playerSound = sound; }
 
 	void setCanNotMove(bool isCanNotMove) { m_isCanNotMove = isCanNotMove; }
 
@@ -49,6 +50,8 @@ public:
 private:
 	int m_handle[kGraphicDivNum];
 
+	int m_playerSound;
+
 	int m_deadHandle;
 
 	// 表示位置
@@ -66,4 +69,5 @@ private:
 	int m_animeFrame;
 	int m_animeDirections;	//表示する方向
 
+	int count;
 };

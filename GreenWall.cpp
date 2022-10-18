@@ -13,12 +13,7 @@ bool GreenWall::update(Player& player) {
 	if (playerTop < 25)return false;
 	if (playerBottom > 297)return false;
 
-	/*if (playerLeft > 365)return false;
-	if (playerRight < 185)return false;
-	if (playerTop < 265)return false;
-	if (playerBottom > 255)return false;
-
-	if (playerLeft > 185)return false;
+	/*if (playerLeft > 185)return false;
 	if (playerRight < 195)return false;
 	if (playerTop < 105)return false;
 	if (playerBottom > 265)return false;

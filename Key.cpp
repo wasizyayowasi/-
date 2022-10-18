@@ -28,15 +28,15 @@ void Key::init() {
 //描画
 void Key::draw() {
 	if (m_isDead) {
-		m_keyX = 0;
-		m_keyY = 20;
+		m_keyX = 15;
+		m_keyY = 35;
 	}
 	else {
 		m_keyX = 220;
 		m_keyY = 200;
 		setDead(false);
 	}
-	
+
 	DrawGraph(m_keyX, m_keyY, m_handle, true);
 	//デバッグ用
 	/*DrawFormatString(0, 0, GetColor(255, 255, 255), "HIT");
@@ -44,7 +44,17 @@ void Key::draw() {
 	DrawBox(m_keyX, m_keyY, m_keyX + 20, m_keyY + 39, GetColor(255, 0, 0), false);*/
 }
 
+void Key::setDead(bool isDead) {
+	m_isDead = isDead;
+	if (m_isDead) {
+		ChangeVolumeSoundMem(125, m_keySound);
+		PlaySoundMem(m_keySound, DX_PLAYTYPE_BACK, true);
+	}
+}
+
 bool Key::isCol(Player& player) {
+
+	if (m_isDead) return false;
 
 	float keyLeft = getPos().x + m_keyX;
 	float keyRight = getPos().x + m_keyX + kSizeX;
