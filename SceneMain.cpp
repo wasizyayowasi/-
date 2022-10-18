@@ -125,10 +125,14 @@ int SceneMain::update() {
 	}
 	else if (!m_greenWall.update(m_player)) {
 		m_player.update();
+		m_player.collisionDetection();
+		m_player.trace();
 	}
 	else {
 		m_player.setCanNotMove(true);
 		m_player.update();
+		m_player.collisionDetection();
+		m_player.trace();
 	}
 
 	if (m_botan.isCol(m_player)) {
@@ -138,7 +142,7 @@ int SceneMain::update() {
 
 	if (!m_door.isCol(m_player)) {
 		if (!m_enemy.isCol(m_player)) {
-			m_enemy.update(m_player);
+			//m_enemy.update(m_player);
 		}
 	}
 

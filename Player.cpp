@@ -1,7 +1,49 @@
 #include"DxLib.h"
+#include <stdio.h>
 #include <cassert>
 #include "game.h"
 #include "Player.h"
+
+
+typedef struct ColData {
+	int left;
+	int top;
+	int right;
+	int bottom;
+}ColData;
+
+ColData colData[] = {
+	//外壁確認
+	{100, 25, 115, 571},			//左
+	{100, 25, 360, 40},				//左上
+	{440, 25, 700, 40},				//右上
+	{685, 25, 700, 571},			//右
+	{435, 556, 700, 571},			//右下
+	{100, 556, 365, 571},			//左下
+	//緑内壁
+	{270, 25, 280, 265 },			//左
+	{185, 255, 365, 265},			//真ん中
+	{185, 105, 195, 265},			//真ん中下
+	{352, 255, 363, 340},			//右下縦
+	{352, 330, 530, 340 },			//右下横
+	//水色内壁   右上から①
+	{435, 103, 700, 113},			//①
+	{352, 103, 362, 190},			//②
+	{352, 180, 615, 190},			//③
+	{435, 180, 445, 265},			//④
+	{435, 255, 530, 265},			//⑤
+	{603, 180, 613, 415},			//⑥
+	{270, 405, 613, 415},			//⑦
+	{270, 330, 280, 415},			//⑧
+	{185, 330, 280, 340},			//⑨
+	{185, 330, 195, 490},			//⑩
+	//青内壁　　　　右から①
+	{603, 480, 613, 571},
+	{520, 405, 530, 490},
+	{437, 480, 447, 571},
+	{352, 405, 362, 571},
+	{270, 480, 280, 571}
+};
 
 namespace
 {
@@ -31,6 +73,9 @@ void Player::init()
 	m_pos.y = Game::kScreenHeight - kGraphicSizeY;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
+
+	tracePosX = 0;
+	tracePosY = 0;
 
 	m_isCanNotMove = false;
 
@@ -127,56 +172,6 @@ void Player::update()
 	m_animeNo = m_animeDirections * kGraphicDivX + tempAnimeNo;
 }
 
-//void Player::downGrade() {
-//
-//	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-//	bool isKey = false;
-//	if (padState & PAD_INPUT_UP)
-//	{
-//		//上　73～96
-//		m_pos.y += 8;
-//		if (m_pos.y < 0) {
-//			m_pos.y = 0;
-//		}
-//		m_animeDirections = 3;
-//		isKey = true;
-//	}
-//	if (padState & PAD_INPUT_DOWN)
-//	{
-//		//下　1～24
-//		m_pos.y -= 8;
-//		if (m_pos.y > Game::kScreenHeight - 32) {
-//			m_pos.y = Game::kScreenHeight - 32;
-//		}
-//		m_animeDirections = 0;
-//		isKey = true;
-//	}
-//	if (padState & PAD_INPUT_LEFT)
-//	{
-//		//左　25～48
-//		m_pos.x += 8;
-//		if (m_pos.x < 0) {
-//			m_pos.x = 0;
-//		}
-//		m_animeDirections = 1;
-//		isKey = true;
-//	}
-//	if (padState & PAD_INPUT_RIGHT)
-//	{
-//		//右　49～72
-//		m_pos.x -= 8;
-//		if (m_pos.x > Game::kScreenWidth - 32) {
-//			m_pos.x = Game::kScreenWidth - 32;
-//		}
-//		m_animeDirections = 2;
-//		isKey = true;
-//	}
-//
-//	//キャラクターのアニメーション
-//	if (isKey) m_animeFrame++;
-//
-//}
-
 void Player::draw()
 {
 	SetFontSize(0);
@@ -250,4 +245,28 @@ void Player::deadDraw() {
 }
 void Player::soul() {
 	DrawGraph(static_cast<int>(m_pos.x) + 17, static_cast<int>(m_pos.y), m_deadHandle, true);
+}
+
+
+void Player::trace() {
+	tracePosX = m_pos.x;
+	tracePosY = m_pos.y;
+}
+
+
+void Player::collisionDetection() {
+	for (ColData data : colData) {
+		if (data.left < m_pos.x + 32) {
+			m_pos.x = tracePosX;
+		}
+		else if (data.top > m_pos.y + 32) {
+			m_pos.y = tracePosY;
+		}
+		else if (data.right > m_pos.x) {
+			m_pos.x = tracePosX;
+		}
+		else if (data.bottom < m_pos.y) {
+			m_pos.y = tracePosY;
+		}
+	}
 }

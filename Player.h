@@ -47,6 +47,10 @@ public:
 
 	void soul();
 
+	void trace();
+
+	void collisionDetection();
+
 private:
 	int m_handle[kGraphicDivNum];
 
@@ -68,6 +72,9 @@ private:
 	int m_animeNo;			//•\¦‚·‚é”Ô†
 	int m_animeFrame;
 	int m_animeDirections;	//•\¦‚·‚é•ûŒü
+
+	int tracePosX;
+	int tracePosY;
 
 	int count;
 };
