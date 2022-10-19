@@ -14,35 +14,35 @@ typedef struct ColData {
 
 ColData colData[] = {
 	//外壁確認
-	{100, 25, 115, 571},			//左
-	{100, 25, 360, 40},				//左上
-	{440, 25, 700, 40},				//右上
-	{685, 25, 700, 571},			//右
-	{435, 556, 700, 571},			//右下
-	{100, 556, 365, 571},			//左下
-	//緑内壁
-	{270, 25, 280, 265 },			//左
-	{185, 255, 365, 265},			//真ん中
-	{185, 105, 195, 265},			//真ん中下
-	{352, 255, 363, 340},			//右下縦
-	{352, 330, 530, 340 },			//右下横
-	//水色内壁   右上から①
-	{435, 103, 700, 113},			//①
-	{352, 103, 362, 190},			//②
-	{352, 180, 615, 190},			//③
-	{435, 180, 445, 265},			//④
-	{435, 255, 530, 265},			//⑤
-	{603, 180, 613, 415},			//⑥
-	{270, 405, 613, 415},			//⑦
-	{270, 330, 280, 415},			//⑧
-	{185, 330, 280, 340},			//⑨
-	{185, 330, 195, 490},			//⑩
-	//青内壁　　　　右から①
-	{603, 480, 613, 571},
-	{520, 405, 530, 490},
-	{437, 480, 447, 571},
-	{352, 405, 362, 571},
-	{270, 480, 280, 571}
+	{685, 38, 115, 560},			//左
+	//{100, 25, 360, 40},				//左上
+	//{440, 25, 700, 40},				//右上
+	//{685, 25, 700, 571},			//右
+	//{435, 556, 700, 571},			//右下
+	//{100, 556, 365, 571},			//左下
+	////緑内壁
+	//{270, 25, 280, 265 },			//左
+	//{185, 255, 365, 265},			//真ん中
+	//{185, 105, 195, 265},			//真ん中下
+	//{352, 255, 363, 340},			//右下縦
+	//{352, 330, 530, 340 },			//右下横
+	////水色内壁   右上から①
+	//{435, 103, 700, 113},			//①
+	//{352, 103, 362, 190},			//②
+	//{352, 180, 615, 190},			//③
+	//{435, 180, 445, 265},			//④
+	//{435, 255, 530, 265},			//⑤
+	//{603, 180, 613, 415},			//⑥
+	//{270, 405, 613, 415},			//⑦
+	//{270, 330, 280, 415},			//⑧
+	//{185, 330, 280, 340},			//⑨
+	//{185, 330, 195, 490},			//⑩
+	////青内壁　　　　右から①
+	//{603, 480, 613, 571},
+	//{520, 405, 530, 490},
+	//{437, 480, 447, 571},
+	//{352, 405, 362, 571},
+	//{270, 480, 280, 571}
 };
 
 namespace
@@ -161,6 +161,8 @@ void Player::update()
 		
 	}
 
+	collisionDetection();
+
 	//キャラクターのアニメーション
 	if (isKey) m_animeFrame++;
 
@@ -170,6 +172,8 @@ void Player::update()
 
 	int tempAnimeNo = m_animeFrame / kAnimeChangeFrame;
 	m_animeNo = m_animeDirections * kGraphicDivX + tempAnimeNo;
+
+	//DrawFormatString(0, 150, GetColor(255, 255, 255), "%f,%f", m_pos.x,m_pos.y);
 }
 
 void Player::draw()
@@ -186,8 +190,8 @@ void Player::draw()
 	DrawBox(100, 25, 360, 40, GetColor(255, 0, 0), false);		//左上
 	DrawBox(440, 25, 700, 40, GetColor(255, 0, 0), false);		//右上
 	DrawBox(685, 25, 700, 571, GetColor(255, 0, 0), false);		//右
-	DrawBox(435, 556, 700, 571, GetColor(255, 0, 0), false);	//右下
-	DrawBox(100, 556, 365, 571, GetColor(255, 0, 0), false);	//左下
+	DrawBox(435, 560, 700, 571, GetColor(255, 0, 0), false);	//右下
+	DrawBox(100, 560, 365, 571, GetColor(255, 0, 0), false);	//左下
 	//緑内壁
 	DrawBox(270, 25, 280, 265, GetColor(0,255, 0), false);		//左
 	DrawBox(185, 255, 365, 265, GetColor(0, 255, 0), false);	//真ん中
@@ -251,22 +255,50 @@ void Player::soul() {
 void Player::trace() {
 	tracePosX = m_pos.x;
 	tracePosY = m_pos.y;
+
+	//DrawFormatString(0, 165, GetColor(255, 255, 255), "%d,%d", tracePosX, tracePosY);
+	//DrawFormatString(0, 180, GetColor(255, 255, 255), "%f,%f", m_pos.x, m_pos.y);
 }
 
 
 void Player::collisionDetection() {
+	
+	float playerLeft = getPos().x;
+	float playerRight = getPos().x + 32;
+	float playerTop = getPos().y;
+	float playerBottom = getPos().y + 32;
+
+	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+
 	for (ColData data : colData) {
-		if (data.left < m_pos.x + 32) {
-			m_pos.x = tracePosX;
+		DrawFormatString(0, 150, GetColor(255, 255, 255), "%d,%d,%d,%d", data.left, data.top, data.right, data.bottom);
+		if (padState & PAD_INPUT_RIGHT) {
+			if (playerRight > data.left) {
+				DrawString(0, 90, "HIT", GetColor(255, 255, 255));
+				m_pos.x = tracePosX;
+				break;
+			}
 		}
-		else if (data.top > m_pos.y + 32) {
-			m_pos.y = tracePosY;
+		if (padState & PAD_INPUT_DOWN) {
+			if (playerBottom > data.bottom) {
+				DrawString(0, 105, "HIT2", GetColor(255, 255, 255));
+				m_pos.y = tracePosY;
+				break;
+			}
 		}
-		else if (data.right > m_pos.x) {
-			m_pos.x = tracePosX;
+		if (padState & PAD_INPUT_LEFT) {
+			if (playerLeft < data.right) {
+				DrawString(0, 120, "HIT3", GetColor(255, 255, 255));
+				m_pos.x = tracePosX;
+				break;
+			}
 		}
-		else if (data.bottom < m_pos.y) {
-			m_pos.y = tracePosY;
+		if (padState & PAD_INPUT_UP) {
+			if (playerTop < data.top) {
+				DrawString(0, 135, "HIT4", GetColor(255, 255, 255));
+				m_pos.y = tracePosY;
+				break;
+			}
 		}
 	}
 }

@@ -123,15 +123,8 @@ int SceneMain::update() {
 			return 2;
 		}
 	}
-	else if (!m_greenWall.update(m_player)) {
-		m_player.update();
-		m_player.collisionDetection();
-		m_player.trace();
-	}
 	else {
-		m_player.setCanNotMove(true);
 		m_player.update();
-		m_player.collisionDetection();
 		m_player.trace();
 	}
 

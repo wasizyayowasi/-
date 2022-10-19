@@ -154,7 +154,6 @@
     <ClCompile Include="Botan.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="GreenWall.cpp" />
     <ClCompile Include="Key.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -164,14 +163,12 @@
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="Vec2.cpp" />
-    <ClCompile Include="WallBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Botan.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="game.h" />
-    <ClInclude Include="GreenWall.h" />
     <ClInclude Include="Key.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Player.h" />
@@ -180,7 +177,6 @@
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="Vec2.h" />
-    <ClInclude Include="WallBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
