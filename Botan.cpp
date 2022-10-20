@@ -9,7 +9,10 @@ namespace {
 
 Botan::Botan() {
 	m_handle = -1;
-
+	m_botanX = 0;
+	m_botanY = 0;
+	m_botanSound = -1;
+	m_isDead = false;
 }
 
 Botan:: ~Botan() {

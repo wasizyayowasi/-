@@ -24,8 +24,6 @@ public:
 	void setPlayerDeadHandle(int handle) { m_deadHandle = handle; }
 	void setSound(int sound) { m_playerSound = sound; }
 
-	void setCanNotMove(bool isCanNotMove) { m_isCanNotMove = isCanNotMove; }
-
 	// ƒvƒŒƒCƒ„[‚Ì‰Šú‰»
 	void init();
 
@@ -49,7 +47,8 @@ public:
 
 	void trace();
 
-	void collisionDetection();
+	void outerWallCollisionDetection();
+	void greenWallCollisionDetection();
 
 private:
 	int m_handle[kGraphicDivNum];

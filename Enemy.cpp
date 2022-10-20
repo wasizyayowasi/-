@@ -14,6 +14,14 @@ Enemy::Enemy() {
 	for (auto& handle : m_handle) {
 		handle = -1;
 	}
+	enemySpeed = 0.0f;
+	playerPosX = 0.0f;
+	playerPosY = 0.0f;
+	m_waitFrame = 0;
+	m_isPush = false;
+	m_animeNo = 0;
+	m_animeFrame = 0;
+	m_animeDirections = 0;
 }
 
 Enemy::~Enemy() {
@@ -65,10 +73,10 @@ void Enemy::update(Player& player) {
 	else if (player.getPos().x > m_pos.x) {
 		m_animeNo = 7;
 	}
-	else if (static_cast<int>(player.getPos().y) > static_cast<int>(m_pos.y) && static_cast<int>(player.getPos().x) == static_cast<int>(m_pos.x)) {
+	else if (static_cast<int>(player.getPos().y) > static_cast<int>(m_pos.y) ) {
 		m_animeNo = 0;
 	}
-	else if (static_cast<int>(player.getPos().y) < static_cast<int>(m_pos.y) && static_cast<int>(player.getPos().x) == static_cast<int>(m_pos.x)) {
+	else if (static_cast<int>(player.getPos().y) < static_cast<int>(m_pos.y) ) {
 		m_animeNo = 10;
 	}
 
@@ -82,7 +90,7 @@ void Enemy::draw() {
 	DrawString(700, 0, "‚¨‰»‚¯‘Ò‹@ŽžŠÔ", GetColor(255, 255, 255));
 	SetFontSize(20);
 	DrawFormatString(750, 20, GetColor(255, 255, 0), "%d", m_waitFrame / 60);
-	DrawGraph(m_pos.x, m_pos.y, m_handle[m_animeNo], true);
+	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
 }
 
 bool Enemy::isCol(Player& player) {

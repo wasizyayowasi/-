@@ -37,7 +37,6 @@ private:
 	int m_hEnemyGraphic[Enemy::kGraphicDivNum];
 	//ボタンのグラフィックハンドル
 	int m_hBotan;
-
 	//歩くサウンド
 	int m_sPlayer;
 	//鍵取得のサウンド

@@ -8,7 +8,7 @@ namespace {
 
 Map::Map() {
 	m_handle = -1;
-
+	m_backgroundHnadle = -1;
 }
 
 Map:: ~Map() {
@@ -23,6 +23,6 @@ void Map::init() {
 
 //•`‰æ
 void Map::draw() {
-	//DrawGraph(0, 0, m_backgroundHnadle, false);
+	DrawGraph(0, 0, m_backgroundHnadle, false);
 	DrawGraph(mapX, mapY, m_handle, true);
 }

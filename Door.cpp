@@ -11,6 +11,8 @@ namespace {
 
 Door::Door() {
 	m_handle = -1;
+	m_isDead = false;
+	m_isPadlockDead = false;
 	
 }
 

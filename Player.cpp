@@ -5,45 +5,7 @@
 #include "Player.h"
 
 
-typedef struct ColData {
-	int left;
-	int top;
-	int right;
-	int bottom;
-}ColData;
 
-ColData colData[] = {
-	//ŠO•ÇŠm”F
-	{685, 38, 115, 560},			//¶
-	//{100, 25, 360, 40},				//¶ã
-	//{440, 25, 700, 40},				//‰Eã
-	//{685, 25, 700, 571},			//‰E
-	//{435, 556, 700, 571},			//‰E‰º
-	//{100, 556, 365, 571},			//¶‰º
-	////—Î“à•Ç
-	//{270, 25, 280, 265 },			//¶
-	//{185, 255, 365, 265},			//^‚ñ’†
-	//{185, 105, 195, 265},			//^‚ñ’†‰º
-	//{352, 255, 363, 340},			//‰E‰ºc
-	//{352, 330, 530, 340 },			//‰E‰º‰¡
-	////…F“à•Ç   ‰Eã‚©‚ç‡@
-	//{435, 103, 700, 113},			//‡@
-	//{352, 103, 362, 190},			//‡A
-	//{352, 180, 615, 190},			//‡B
-	//{435, 180, 445, 265},			//‡C
-	//{435, 255, 530, 265},			//‡D
-	//{603, 180, 613, 415},			//‡E
-	//{270, 405, 613, 415},			//‡F
-	//{270, 330, 280, 415},			//‡G
-	//{185, 330, 280, 340},			//‡H
-	//{185, 330, 195, 490},			//‡I
-	////Â“à•Ç@@@@‰E‚©‚ç‡@
-	//{603, 480, 613, 571},
-	//{520, 405, 530, 490},
-	//{437, 480, 447, 571},
-	//{352, 405, 362, 571},
-	//{270, 480, 280, 571}
-};
 
 namespace
 {
@@ -60,6 +22,16 @@ Player::Player()
 	for (auto& handle : m_handle) {
 		handle = -1;
 	}
+
+	m_playerSound = -1;
+	m_deadHandle = -1;
+	m_isCanNotMove = false;
+	m_animeNo = 0;			
+	m_animeFrame = 0;
+	m_animeDirections = 0;	
+	tracePosX = 0;
+	tracePosY = 0;
+	count = 0;
 }
 
 Player::~Player()
@@ -112,7 +84,7 @@ void Player::update()
 		}
 		
 	}
-	if (padState & PAD_INPUT_DOWN)
+	else if (padState & PAD_INPUT_DOWN)
 	{
 		if (m_isCanNotMove) {
 			m_pos.y = m_pos.y;
@@ -128,7 +100,7 @@ void Player::update()
 		}
 		
 	}
-	if (padState & PAD_INPUT_LEFT)
+	else if (padState & PAD_INPUT_LEFT)
 	{
 		if (m_isCanNotMove) {
 			m_pos.x = m_pos.x - 0.5f;
@@ -144,7 +116,7 @@ void Player::update()
 		}
 		
 	}
-	if (padState & PAD_INPUT_RIGHT)
+	else if (padState & PAD_INPUT_RIGHT)
 	{
 		if (m_isCanNotMove) {
 			m_pos.x = m_pos.x;
@@ -161,7 +133,8 @@ void Player::update()
 		
 	}
 
-	collisionDetection();
+	//outerWallCollisionDetection();
+	//greenWallCollisionDetection();
 
 	//ƒLƒƒƒ‰ƒNƒ^[‚ÌƒAƒjƒ[ƒVƒ‡ƒ“
 	if (isKey) m_animeFrame++;
@@ -260,8 +233,52 @@ void Player::trace() {
 	//DrawFormatString(0, 180, GetColor(255, 255, 255), "%f,%f", m_pos.x, m_pos.y);
 }
 
+typedef struct ColData {
+	int left;
+	int top;
+	int right;
+	int bottom;
+}ColData;
 
-void Player::collisionDetection() {
+ColData colData[] = {
+	//ŠO•ÇŠm”F
+	//{685, 38, 115, 560},
+	{100, 25, 360, 40},		//¶ã
+	//{440, 25, 700, 40},		//‰Eã
+	//{685, 25, 700, 571 },	//‰E
+	//{435, 560, 700, 571},	//‰E‰º
+	//{100, 560, 365, 571 }	//¶‰º
+};
+
+ColData colData2[] = {
+
+	////—Î“à•Ç
+	{270, 25, 280, 265 },			//¶
+	//{185, 255, 365, 265},			//^‚ñ’†
+	//{185, 105, 195, 265},			//^‚ñ’†‰º
+	//{352, 255, 363, 340},			//‰E‰ºc
+	//{352, 330, 530, 340 },			//‰E‰º‰¡
+	////…F“à•Ç   ‰Eã‚©‚ç‡@
+	//{435, 103, 700, 113},			//‡@
+	//{352, 103, 362, 190},			//‡A
+	//{352, 180, 615, 190},			//‡B
+	//{435, 180, 445, 265},			//‡C
+	//{435, 255, 530, 265},			//‡D
+	//{603, 180, 613, 415},			//‡E
+	//{270, 405, 613, 415},			//‡F
+	//{270, 330, 280, 415},			//‡G
+	//{185, 330, 280, 340},			//‡H
+	//{185, 330, 195, 490},			//‡I
+	////Â“à•Ç@@@@‰E‚©‚ç‡@
+	//{603, 480, 613, 571},
+	//{520, 405, 530, 490},
+	//{437, 480, 447, 571},
+	//{352, 405, 362, 571},
+	//{270, 480, 280, 571}
+};
+
+
+void Player::outerWallCollisionDetection() {
 	
 	float playerLeft = getPos().x;
 	float playerRight = getPos().x + 32;
@@ -271,16 +288,58 @@ void Player::collisionDetection() {
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
 
 	for (ColData data : colData) {
-		DrawFormatString(0, 150, GetColor(255, 255, 255), "%d,%d,%d,%d", data.left, data.top, data.right, data.bottom);
+		DrawFormatString(0, 170, GetColor(255, 255, 255), "%d,%d,%d,%d", data.left, data.top, data.right, data.bottom);
 		if (padState & PAD_INPUT_RIGHT) {
-			if (playerRight > data.left) {
-				DrawString(0, 90, "HIT", GetColor(255, 255, 255));
+			if (playerRight < data.left) {
 				m_pos.x = tracePosX;
 				break;
 			}
 		}
+		else if (padState & PAD_INPUT_DOWN) {
+			if (playerBottom < data.top) {
+				m_pos.y = tracePosY;
+				break;
+			}
+		}
+		else if (padState & PAD_INPUT_LEFT) {
+			if (playerLeft < data.right) {
+				if (playerTop < data.bottom) {
+					m_pos.x = tracePosX;
+					break;
+				}
+			}
+		}
+		else if (padState & PAD_INPUT_UP) {
+			if (playerTop < data.bottom) {
+				m_pos.y = tracePosY;
+				break;
+			}
+		}
+	}
+}
+
+void Player::greenWallCollisionDetection() {
+
+	float playerLeft = getPos().x;
+	float playerRight = getPos().x + 32;
+	float playerTop = getPos().y;
+	float playerBottom = getPos().y + 32;
+
+	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
+
+	for (ColData data : colData2) {
+		DrawFormatString(0, 150, GetColor(255, 255, 255), "%d,%d,%d,%d", data.left, data.top, data.right, data.bottom);
+		if (padState & PAD_INPUT_RIGHT) {
+			if (playerRight < data.left) {
+				if (playerTop < data.bottom) {
+					DrawString(0, 90, "HIT", GetColor(255, 255, 255));
+					m_pos.x = tracePosX;
+					break;
+				}
+			}
+		}
 		if (padState & PAD_INPUT_DOWN) {
-			if (playerBottom > data.bottom) {
+			if (playerBottom < data.top) {
 				DrawString(0, 105, "HIT2", GetColor(255, 255, 255));
 				m_pos.y = tracePosY;
 				break;
@@ -288,16 +347,21 @@ void Player::collisionDetection() {
 		}
 		if (padState & PAD_INPUT_LEFT) {
 			if (playerLeft < data.right) {
-				DrawString(0, 120, "HIT3", GetColor(255, 255, 255));
-				m_pos.x = tracePosX;
-				break;
+				if (playerTop < data.bottom) {
+					DrawString(0, 120, "HIT3", GetColor(255, 255, 255));
+					m_pos.x = tracePosX;
+					break;
+				}
 			}
 		}
 		if (padState & PAD_INPUT_UP) {
-			if (playerTop < data.top) {
-				DrawString(0, 135, "HIT4", GetColor(255, 255, 255));
-				m_pos.y = tracePosY;
-				break;
+			if (playerTop < data.bottom) {
+				DrawString(0, 135, "“Ë”j", GetColor(255, 255, 255));
+				if ((playerLeft < data.right || playerRight < data.left) && (playerLeft > data.right || playerRight > data.left)) {
+					DrawString(0, 135, "HIT4", GetColor(255, 255, 255));
+					m_pos.y = tracePosY;
+					break;
+				}
 			}
 		}
 	}

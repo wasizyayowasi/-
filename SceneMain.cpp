@@ -19,6 +19,11 @@ SceneMain::SceneMain() {
 	m_hDoor = -1;
 	m_hPlayerDead = -1;
 	m_hBotan = -1;
+	m_sPlayer = -1;
+	m_sKeyHandle = -1;
+	m_sPushBotan = -1;
+	playerDead = 0;
+	playerDeadTime = 0;
 
 	for (auto& playerHandle : m_hPlayerGraphic) {
 		playerHandle = -1;

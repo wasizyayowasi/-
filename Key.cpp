@@ -11,7 +11,10 @@ namespace {
 
 Key::Key() {
 	m_handle = -1;
-	
+	m_keyX = 0;
+	m_keyY = 0;
+	m_keySound = -1;
+	m_isDead = false;
 }
 
 Key:: ~Key() {
