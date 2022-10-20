@@ -43,6 +43,8 @@ private:
 	int m_sPushBotan;
 	//扉を開けるサウンド
 	int m_sOpenDoor;
+	//死亡時のサウンド
+	int m_sDead;
 	//死亡フラグ
 	int playerDead;
 

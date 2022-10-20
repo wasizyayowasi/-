@@ -13,7 +13,7 @@ Door::Door() {
 	m_handle = -1;
 	m_isDead = false;
 	m_isPadlockDead = false;
-	
+	count = 0;
 }
 
 Door::~Door() {
@@ -23,6 +23,7 @@ Door::~Door() {
 void Door::init() {
 	m_isDead = false;
 	m_isPadlockDead = false;
+	count = 1;
 }
 
 
@@ -30,8 +31,7 @@ void Door::init() {
 void Door::setDead(bool isDead) {
 	m_isDead = isDead;
 	if (m_isDead) {
-		ChangeVolumeSoundMem(125, m_sound);
-		PlaySoundMem(m_sound, DX_PLAYTYPE_BACK, true);
+		
 	}
 }
 
@@ -60,6 +60,11 @@ bool Door::isCol(Player& player) {
 
 	if (playerTop < doorBottom) {
 		if (m_isPadlockDead) {
+			if (count > 0) {
+				ChangeVolumeSoundMem(125, m_sound);
+				PlaySoundMem(m_sound, DX_PLAYTYPE_BACK, true);
+				count--;
+			}
 			return true;
 		}
 	}

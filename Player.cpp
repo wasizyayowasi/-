@@ -54,7 +54,7 @@ void Player::init()
 	m_animeFrame = 0;
 	m_animeDirections = 0;
 
-	count = 0;
+	count = 1;
 }
 
 
@@ -183,6 +183,11 @@ void Player::deadDraw() {
 	DrawRotaGraph(static_cast<int>(m_pos.x) + 32, static_cast<int>(m_pos.y) + 32, 1, angle, m_handle[4], true, false);
 }
 void Player::soul() {
+	if (count > 0) {
+		ChangeVolumeSoundMem(125, m_playerSound);
+		PlaySoundMem(m_playerSound, DX_PLAYTYPE_BACK, true);
+		count--;
+	}
 	DrawGraph(static_cast<int>(m_pos.x) + 17, static_cast<int>(m_pos.y), m_deadHandle, true);
 }
 

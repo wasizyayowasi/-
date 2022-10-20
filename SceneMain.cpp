@@ -49,6 +49,7 @@ void SceneMain::init() {
 	m_sKeyHandle = LoadSoundMem("soundEffect/coin07.mp3");
 	m_sPushBotan = LoadSoundMem("soundEffect/switch1.mp3");
 	m_sOpenDoor = LoadSoundMem("soundEffect/door.mp3");
+	m_sDead = LoadSoundMem("soundEffect/dead.mp3");
 
 	m_map.setHandle(m_hMap);
 	m_map.setBackgroundHandle(m_hBackgroundHnadle);
@@ -59,6 +60,7 @@ void SceneMain::init() {
 	m_key.setSound(m_sKeyHandle);
 	m_botan.setSound(m_sPushBotan);
 	m_door.setSound(m_sOpenDoor);
+	m_player.setSound(m_sDead);
 
 	LoadDivGraph(kPlayerGraphicFilename, Player::kGraphicDivNum, Player::kGraphicDivX, Player::kGraphicDivY, Player::kGraphicSizeX, Player::kGraphicSizeY, m_hPlayerGraphic);
 	LoadDivGraph(kEnemyGraphicFilename, Enemy::kGraphicDivNum, Enemy::kGraphicDivX, Enemy::kGraphicDivY, Enemy::kGraphicSizeX, Enemy::kGraphicSizeY, m_hEnemyGraphic);

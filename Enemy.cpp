@@ -99,9 +99,9 @@ void Enemy::draw() {
 bool Enemy::isCol(Player& player) {
 
 	float EnemyLeft = getPos().x ;
-	float EnemyRight = getPos().x + 32;
+	float EnemyRight = getPos().x + 28;
 	float EnemyTop = getPos().y ;
-	float EnemyBottom = getPos().y + 32;
+	float EnemyBottom = getPos().y + 28;
 
 	float playerLeft = player.getPos().x;
 	float playerRight = player.getPos().x + 32;

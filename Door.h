@@ -38,6 +38,8 @@ private:
 
 	int m_sound;
 
+	int count;
+
 	Vec2 m_pos;
 
 	Vec2 m_size;
