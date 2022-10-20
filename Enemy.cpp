@@ -54,7 +54,7 @@ void Enemy::init() {
 void Enemy::update(Player& player) {
 
 	if (m_isPush) {
-		m_waitFrame = 660;
+		m_waitFrame = 690;
 		m_isPush = false;
 	}
 
