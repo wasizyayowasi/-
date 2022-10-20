@@ -43,8 +43,10 @@ bool SceneTitle::update() {
 void SceneTitle::draw() {
 	SetFontSize(fontSize);
 	//SetDrawBright(m_fadeBright, m_fadeBright, m_fadeBright);
-	DrawString(Game::kScreenWidth / 2 - 185, Game::kScreenHeight / 6, "めいろ", GetColor(255, 255, 255));
-	SetFontSize(60);
-	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 50, "Aで挑戦", GetColor(255, 255, 255));
-	DrawString(Game::kScreenWidth / 2 - 100, Game::kScreenHeight / 3 + 120, "Bで終了", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 220, Game::kScreenHeight / 6, "めいろ？", GetColor(255, 255, 255));
+	SetFontSize(40);
+	DrawString(Game::kScreenWidth / 2 - 250, Game::kScreenHeight / 3 + 50, "コントローラーでお願いします", GetColor(255, 255, 0));
+	DrawString(Game::kScreenWidth / 2 - 160, Game::kScreenHeight / 3 + 120, "多少、音もあります", GetColor(255, 255, 0));
+	DrawString(Game::kScreenWidth / 2 - 80, Game::kScreenHeight / 3 + 190, "Aで挑戦", GetColor(255, 255, 255));
+	DrawString(Game::kScreenWidth / 2 - 80, Game::kScreenHeight / 3 + 260, "Bで終了", GetColor(255, 255, 255));
 }

@@ -25,7 +25,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance,_In_opt_ HINSTANCE hPrevInstance,_In
 	
 	//ダブルバッファモード
 	SetDrawScreen(DX_SCREEN_BACK);
-	int sceneNo = 1;
+	int sceneNo = 0;
 
 	SceneMain sceneMain;
 	sceneMain.init();
