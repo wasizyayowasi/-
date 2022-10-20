@@ -2,8 +2,8 @@
 #include "Door.h"
 
 namespace {
-	constexpr int m_doorX = 360;
-	constexpr int m_doorY = 25;
+	constexpr float m_doorX = 360;
+	constexpr float m_doorY = 25;
 
 	constexpr float kSizeX = 80.0f;
 	constexpr float kSizeY = 14.0f;
@@ -25,18 +25,33 @@ void Door::init() {
 	m_isPadlockDead = false;
 }
 
-void Door::draw() {
-	if (m_isDead) return;
-	DrawBox(getPos().x + m_doorX, getPos().y + m_doorY, getPos().x + m_doorX + kSizeX, getPos().y + m_doorY + kSizeY, GetColor(0, 0, 0), false);
-	DrawGraph(m_doorX, m_doorY, m_handle, true);
+
+//プレイヤーが鍵を持っている状態でドアとの接触すると音を鳴らす
+void Door::setDead(bool isDead) {
+	m_isDead = isDead;
+	if (m_isDead) {
+		ChangeVolumeSoundMem(125, m_sound);
+		PlaySoundMem(m_sound, DX_PLAYTYPE_BACK, true);
+	}
 }
 
+
+//描画
+void Door::draw() {
+	if (m_isDead) return;
+	DrawGraph(static_cast<int>(m_doorX), static_cast<int>(m_doorY), m_handle, true);
+}
+
+
+//プレイヤーとの当たり判定
 bool Door::isCol(Player& player) {
 
-	float doorLeft = getPos().x + m_doorX;
-	float doorRight = getPos().x + m_doorX + kSizeX;
-	float doorTop = getPos().y + m_doorY;
-	float doorBottom = getPos().y + m_doorY + kSizeY;
+	float doorLeft = m_doorX;
+	float doorRight =  m_doorX + kSizeX;
+	float doorTop = m_doorY;
+	float doorBottom = m_doorY + kSizeY;
+
+	DrawFormatString(0, 100, GetColor(255, 255, 255), "%f", doorTop);
 
 	float playerLeft = player.getPos().x;
 	float playerRight = player.getPos().x + 32;

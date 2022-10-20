@@ -18,10 +18,11 @@ public:
 
 	//ドアの死亡判定用
 	void setPadlockDead(bool isPadlookDead) { m_isPadlockDead = isPadlookDead; }
+	void setSound(int sound) { m_sound = sound; }
 
 	bool isCol(Player& player);
 
-	void setDead(bool isDead) { m_isDead = isDead; }
+	void setDead(bool isDead) ;
 
 	//データの取得
 	Vec2 getPos()const { return m_pos; }					//左上座標
@@ -34,6 +35,8 @@ private:
 	int m_isDead;
 
 	int m_isPadlockDead;
+
+	int m_sound;
 
 	Vec2 m_pos;
 

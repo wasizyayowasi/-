@@ -2,7 +2,6 @@
 #include"Botan.h"
 
 namespace {
-	//鍵のサイズ
 	constexpr float kSizeX = 32.0f;
 	constexpr float kSizeY = 32.0f;
 }
@@ -27,18 +26,19 @@ void Botan::init() {
 }
 
 //描画
+//ボタンとプレイヤーが接触したらボタンが消える
 void Botan::draw() {
+
 	if (!m_isDead) {
 		DrawGraph(m_botanX, m_botanY, m_handle, true);
 	}
 
-	//デバッグ用
-	/*DrawFormatString(0, 0, GetColor(255, 255, 255), "HIT");
-	DrawBox(getPos().x + m_keyX, getPos().y + m_keyY, getPos().x + m_keyX + kSizeX, getPos().y + m_keyY + kSizeY, GetColor(0, 0, 255), false);
-	DrawBox(m_keyX, m_keyY, m_keyX + 20, m_keyY + 39, GetColor(255, 0, 0), false);*/
 }
 
+
+//ボタンとプレイヤーが接触したら音を鳴らす
 void Botan::setDead(bool isDead) {
+
 	m_isDead = isDead;
 	if (m_isDead) {
 		ChangeVolumeSoundMem(160, m_botanSound);
@@ -46,6 +46,8 @@ void Botan::setDead(bool isDead) {
 	}
 }
 
+
+//プレイヤーとの当たり判定
 bool Botan::isCol(Player& player) {
 
 	if (m_isDead) return false;

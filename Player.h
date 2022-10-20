@@ -47,7 +47,7 @@ public:
 
 	void trace();
 
-	void outerWallCollisionDetection();
+	bool outerWallCollisionDetection();
 	void greenWallCollisionDetection();
 
 private:
@@ -72,8 +72,8 @@ private:
 	int m_animeFrame;
 	int m_animeDirections;	//•\Ž¦‚·‚é•ûŒü
 
-	int tracePosX;
-	int tracePosY;
+	float tracePosX;
+	float tracePosY;
 
 	int count;
 };

@@ -41,12 +41,9 @@ void Key::draw() {
 	}
 
 	DrawGraph(m_keyX, m_keyY, m_handle, true);
-	//デバッグ用
-	/*DrawFormatString(0, 0, GetColor(255, 255, 255), "HIT");
-	DrawBox(getPos().x + m_keyX, getPos().y + m_keyY, getPos().x + m_keyX + kSizeX, getPos().y + m_keyY + kSizeY, GetColor(0, 0, 255), false);
-	DrawBox(m_keyX, m_keyY, m_keyX + 20, m_keyY + 39, GetColor(255, 0, 0), false);*/
 }
 
+//鍵の取得で音を鳴らす
 void Key::setDead(bool isDead) {
 	m_isDead = isDead;
 	if (m_isDead) {
@@ -55,6 +52,8 @@ void Key::setDead(bool isDead) {
 	}
 }
 
+
+//プレイヤーとの当たり判定
 bool Key::isCol(Player& player) {
 
 	if (m_isDead) return false;

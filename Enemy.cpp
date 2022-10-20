@@ -49,10 +49,12 @@ void Enemy::init() {
 
 }
 
+
+//お化けの移動
 void Enemy::update(Player& player) {
 
 	if (m_isPush) {
-		m_waitFrame = 600;
+		m_waitFrame = 660;
 		m_isPush = false;
 	}
 
@@ -82,10 +84,9 @@ void Enemy::update(Player& player) {
 
 }
 
+
+//お化けの描画
 void Enemy::draw() {
-	//DrawFormatString(0,575,GetColor(0,0,0),"(%f,%f)",m_pos.x,m_pos.y);
-	//DrawFormatString(0, 575, GetColor(0, 0, 0), "(%f,%f)", m_pos.x, m_pos.y);
-	//DrawBox(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), static_cast<int>(m_pos.x) + 32, static_cast<int>(m_pos.y) + 32,GetColor(0,0,0),false);
 	SetFontSize(13);
 	DrawString(700, 0, "お化け待機時間", GetColor(255, 255, 255));
 	SetFontSize(20);
@@ -93,9 +94,9 @@ void Enemy::draw() {
 	DrawGraph(static_cast<int>(m_pos.x), static_cast<int>(m_pos.y), m_handle[m_animeNo], true);
 }
 
-bool Enemy::isCol(Player& player) {
 
-	//DrawFormatString(500, 575, GetColor(0, 0, 0), "(%f,%f)", player.getPos().x, player.getPos().y);
+//プレイヤーとの接触判定
+bool Enemy::isCol(Player& player) {
 
 	float EnemyLeft = getPos().x ;
 	float EnemyRight = getPos().x + 32;

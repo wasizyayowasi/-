@@ -19,9 +19,9 @@ SceneMain::SceneMain() {
 	m_hDoor = -1;
 	m_hPlayerDead = -1;
 	m_hBotan = -1;
-	m_sPlayer = -1;
 	m_sKeyHandle = -1;
 	m_sPushBotan = -1;
+	m_sOpenDoor = -1;
 	playerDead = 0;
 	playerDeadTime = 0;
 
@@ -46,11 +46,9 @@ void SceneMain::init() {
 	m_hPlayerDead = LoadGraph("data/tamasii.png");
 	m_hBotan = LoadGraph("data/botan.png");
 	m_hBackgroundHnadle = LoadGraph("data/haikei1.png");
-
-	//m_sPlayer = LoadSoundMem("soundEffect/running_in_a_hall.mp3");
 	m_sKeyHandle = LoadSoundMem("soundEffect/coin07.mp3");
 	m_sPushBotan = LoadSoundMem("soundEffect/switch1.mp3");
-
+	m_sOpenDoor = LoadSoundMem("soundEffect/door.mp3");
 
 	m_map.setHandle(m_hMap);
 	m_map.setBackgroundHandle(m_hBackgroundHnadle);
@@ -58,10 +56,9 @@ void SceneMain::init() {
 	m_door.setHandle(m_hDoor);
 	m_player.setPlayerDeadHandle(m_hPlayerDead);
 	m_botan.setHandle(m_hBotan);
-
-	//m_player.setSound(m_sPlayer);
 	m_key.setSound(m_sKeyHandle);
 	m_botan.setSound(m_sPushBotan);
+	m_door.setSound(m_sOpenDoor);
 
 	LoadDivGraph(kPlayerGraphicFilename, Player::kGraphicDivNum, Player::kGraphicDivX, Player::kGraphicDivY, Player::kGraphicSizeX, Player::kGraphicSizeY, m_hPlayerGraphic);
 	LoadDivGraph(kEnemyGraphicFilename, Enemy::kGraphicDivNum, Enemy::kGraphicDivX, Enemy::kGraphicDivY, Enemy::kGraphicSizeX, Enemy::kGraphicSizeY, m_hEnemyGraphic);
@@ -93,9 +90,9 @@ void SceneMain::end() {
 	DeleteGraph(m_hPlayerDead);
 	DeleteGraph(m_hBotan);
 
-	//DeleteSoundMem(m_sPlayer);
 	DeleteSoundMem(m_sKeyHandle);
 	DeleteSoundMem(m_sPushBotan);
+	DeleteSoundMem(m_sOpenDoor);
 
 	for (auto& playerHandle : m_hPlayerGraphic) {
 		DeleteGraph(playerHandle);
@@ -110,8 +107,8 @@ void SceneMain::end() {
 int SceneMain::update() {
 
 	if (m_key.isCol(m_player)) {
-		m_key.setDead(true);
 		m_door.setPadlockDead(true);
+		m_key.setDead(true);
 	}
 	if (m_door.isCol(m_player)) {
 		m_door.setDead(true);
@@ -140,7 +137,7 @@ int SceneMain::update() {
 
 	if (!m_door.isCol(m_player)) {
 		if (!m_enemy.isCol(m_player)) {
-			//m_enemy.update(m_player);
+			m_enemy.update(m_player);
 		}
 	}
 
